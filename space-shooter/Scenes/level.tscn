@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bco66177it43f"]
+
+[ext_resource type="Texture2D" uid="uid://b8v2afmkyi8j" path="res://sprites/BG.jpg" id="1_6phgx"]
+[ext_resource type="PackedScene" uid="uid://b5mb762co26tb" path="res://Scenes/player.tscn" id="2_81xng"]
+[ext_resource type="PackedScene" uid="uid://buaswq55rq7um" path="res://Scenes/asteroid.tscn" id="3_wqkje"]
+
+[node name="Level" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(1.0000038, 2)
+scale = Vector2(1.2790002, 1.2699822)
+texture = ExtResource("1_6phgx")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("2_81xng")]
+position = Vector2(320, 367)
+
+[node name="Asteroid" parent="." instance=ExtResource("3_wqkje")]
+position = Vector2(245, 39)
