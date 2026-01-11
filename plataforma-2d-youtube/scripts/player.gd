@@ -4,9 +4,8 @@ extends CharacterBody2D
 # Atribuindo a uma variável chamada anim do tipo AnimetadesSprite2D
 @onready var  anim: AnimatedSprite2D = $AnimatedSprite2D
 
-const SPEED = 40.0
-const JUMP_VELOCITY = -200.0
-
+const SPEED = 70.0
+const JUMP_VELOCITY = -300
 # _physics_process roda em todos os frames do jogo
 func _physics_process(delta: float) -> void:
 	
@@ -15,14 +14,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	# get_axis retorna 1.0 se o player estvier indo para direita 
 	# get_axis retorna -1.0 se o player estvier indo para esquerda 
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("left", "right")
 	
 	# If só é verdadeiro quando o valor do direction for != 0 (quando há o input do jogador)
 	if direction:

@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=4 uid="uid://cq3i35o4vmt15"]
+
+[ext_resource type="TileSet" uid="uid://pe12esfxal6p" path="res://tiles/terrain.tres" id="1_2xpkg"]
+[ext_resource type="Texture2D" uid="uid://bjefkiq1lbb5u" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/6 - Distant_trees.png" id="1_gbfvw"]
+[ext_resource type="PackedScene" uid="uid://cmy0m687canpc" path="res://entities/player.tscn" id="2_gbfvw"]
+[ext_resource type="Texture2D" uid="uid://6w0krwirohd" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/5 - Tree_row_BG_2.png" id="2_v5bin"]
+[ext_resource type="Texture2D" uid="uid://bimk4f1n76cc6" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/4 - Tree_row_BG_1.png" id="3_e3l50"]
+[ext_resource type="Texture2D" uid="uid://xy23xxywdru" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="4_e3l50"]
+[ext_resource type="Texture2D" uid="uid://bu5prk1a6qdio" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/2 - Trees.png" id="7_qxlj4"]
+[ext_resource type="Texture2D" uid="uid://dmh8asbm3yn46" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/1 - Leaf_top.png" id="8_jo4av"]
+
+[node name="forest" type="Node2D"]
+
+[node name="DistantTrees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(288, 0)
+
+[node name="6" type="Sprite2D" parent="DistantTrees"]
+texture = ExtResource("1_gbfvw")
+centered = false
+
+[node name="TreeRow1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(288, 0)
+
+[node name="5" type="Sprite2D" parent="TreeRow1"]
+texture = ExtResource("2_v5bin")
+centered = false
+
+[node name="TreeRow2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(288, 0)
+
+[node name="4" type="Sprite2D" parent="TreeRow2"]
+texture = ExtResource("3_e3l50")
+centered = false
+
+[node name="LeafPile" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(288, 0)
+
+[node name="3" type="Sprite2D" parent="LeafPile"]
+position = Vector2(0, 2)
+texture = ExtResource("4_e3l50")
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAwAAQACAAMAAAABAAwAAQACAAMAAAACAAwAAQACAAMAAAADAAwAAQACAAMAAAAEAAwAAQACAAMAAAAFAAwAAQACAAMAAAAGAAwAAQACAAMAAAAHAAwAAQACAAMAAAAIAAwAAQACAAMAAAAJAAwAAQACAAMAAAAKAAwAAQACAAMAAAALAAwAAQACAAMAAAAMAAwAAQACAAMAAAANAAwAAQACAAMAAAAOAAwAAQACAAMAAAAPAAwAAQACAAMAAAAQAAwAAQACAAMAAAARAAwAAQACAAMAAAASAAwAAQACAAMAAAATAAwAAQACAAMAAAAUAAwAAQACAAMAAAAVAAwAAQACAAMAAAAWAAwAAQACAAMAAAAXAAwAAQACAAMAAAAYAAwAAQACAAMAAAAZAAwAAQACAAMAAAAaAAwAAQACAAMAAAAbAAwAAQACAAMAAAAcAAwAAQACAAMAAAAdAAwAAQACAAMAAAAeAAwAAQACAAMAAAAfAAwAAQACAAMAAAAgAAwAAQACAAMAAAAhAAwAAQACAAMAAAAiAAwAAQACAAMAAAAjAAwAAQACAAMAAAAkAAwAAQACAAMAAAAlAAwAAQACAAMAAAAmAAwAAQACAAMAAAAnAAwAAQACAAMAAAAoAAwAAQACAAMAAAApAAwAAQACAAMAAAAqAAwAAQACAAMAAAArAAwAAQACAAMAAAAsAAwAAQACAAMAAAAtAAwAAQACAAMAAAAuAAwAAQACAAMAAAAvAAwAAQACAAMAAAAwAAwAAQACAAMAAAAxAAwAAQACAAMAAAAyAAwAAQACAAMAAAAzAAwAAQACAAMAAAA0AAwAAQACAAMAAAA1AAwAAQACAAMAAAA2AAwAAQACAAMAAAA3AAwAAQACAAMAAAA4AAwAAQACAAMAAAA5AAwAAQACAAMAAAA6AAwAAQACAAMAAAA7AAwAAQACAAMAAAA8AAwAAQACAAMAAAA9AAwAAQACAAMAAAA+AAwAAQACAAMAAAA/AAwAAQACAAMAAABAAAwAAQACAAMAAABBAAwAAQACAAMAAABCAAwAAQACAAMAAABDAAwAAQACAAMAAABEAAwAAQACAAMAAABFAAwAAQACAAMAAABGAAwAAQACAAMAAABHAAwAAQACAAMAAABIAAwAAQACAAMAAABJAAwAAQACAAMAAABKAAwAAQACAAMAAABLAAwAAQACAAMAAABMAAwAAQACAAMAAABNAAwAAQACAAMAAABOAAwAAQACAAMAAABPAAwAAQACAAMAAABQAAwAAQACAAMAAABRAAwAAQACAAMAAABSAAwAAQACAAMAAABTAAwAAQACAAMAAABUAAwAAQACAAMAAABVAAwAAQACAAMAAABWAAwAAQACAAMAAABXAAwAAQACAAMAAABYAAwAAQACAAMAAABZAAwAAQACAAMAAABaAAwAAQACAAMAAABbAAwAAQACAAMAAABcAAwAAQACAAMAAABdAAwAAQACAAMAAAA=")
+tile_set = ExtResource("1_2xpkg")
+
+[node name="Player" parent="." instance=ExtResource("2_gbfvw")]
+position = Vector2(61, 92)
+
+[node name="Trees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1.1)
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(288, 0)
+
+[node name="2" type="Sprite2D" parent="Trees"]
+z_index = 2
+position = Vector2(0, 1)
+texture = ExtResource("7_qxlj4")
+centered = false
+
+[node name="LeafTop" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1.1)
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(288, 0)
+
+[node name="1" type="Sprite2D" parent="LeafTop"]
+position = Vector2(0, 1)
+texture = ExtResource("8_jo4av")
+centered = false
