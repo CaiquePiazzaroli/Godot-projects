@@ -16,8 +16,11 @@ scroll_scale = Vector2(0.2, 0.2)
 repeat_size = Vector2(288, 0)
 
 [node name="6" type="Sprite2D" parent="DistantTrees"]
+texture_repeat = 2
 texture = ExtResource("1_gbfvw")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
 
 [node name="TreeRow1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -25,8 +28,11 @@ scroll_offset = Vector2(0, -1)
 repeat_size = Vector2(288, 0)
 
 [node name="5" type="Sprite2D" parent="TreeRow1"]
+texture_repeat = 2
 texture = ExtResource("2_v5bin")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
 
 [node name="TreeRow2" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.7, 0.7)
@@ -34,8 +40,11 @@ scroll_offset = Vector2(0, -1)
 repeat_size = Vector2(288, 0)
 
 [node name="4" type="Sprite2D" parent="TreeRow2"]
+texture_repeat = 2
 texture = ExtResource("3_e3l50")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 214.5)
 
 [node name="LeafPile" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.9, 0.9)
@@ -43,9 +52,12 @@ scroll_offset = Vector2(0, -1)
 repeat_size = Vector2(288, 0)
 
 [node name="3" type="Sprite2D" parent="LeafPile"]
+texture_repeat = 2
 position = Vector2(0, 2)
 texture = ExtResource("4_e3l50")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAwAAQACAAMAAAABAAwAAQACAAMAAAACAAwAAQACAAMAAAADAAwAAQACAAMAAAAEAAwAAQACAAMAAAAFAAwAAQACAAMAAAAGAAwAAQACAAMAAAAHAAwAAQACAAMAAAAIAAwAAQACAAMAAAAJAAwAAQACAAMAAAAKAAwAAQACAAMAAAALAAwAAQACAAMAAAAMAAwAAQACAAMAAAANAAwAAQACAAMAAAAOAAwAAQACAAMAAAAPAAwAAQACAAMAAAAQAAwAAQACAAMAAAARAAwAAQACAAMAAAASAAwAAQACAAMAAAATAAwAAQACAAMAAAAUAAwAAQACAAMAAAAVAAwAAQACAAMAAAAWAAwAAQACAAMAAAAXAAwAAQACAAMAAAAYAAwAAQACAAMAAAAZAAwAAQACAAMAAAAaAAwAAQACAAMAAAAbAAwAAQACAAMAAAAcAAwAAQACAAMAAAAdAAwAAQACAAMAAAAeAAwAAQACAAMAAAAfAAwAAQACAAMAAAAgAAwAAQACAAMAAAAhAAwAAQACAAMAAAAiAAwAAQACAAMAAAAjAAwAAQACAAMAAAAkAAwAAQACAAMAAAAlAAwAAQACAAMAAAAmAAwAAQACAAMAAAAnAAwAAQACAAMAAAAoAAwAAQACAAMAAAApAAwAAQACAAMAAAAqAAwAAQACAAMAAAArAAwAAQACAAMAAAAsAAwAAQACAAMAAAAtAAwAAQACAAMAAAAuAAwAAQACAAMAAAAvAAwAAQACAAMAAAAwAAwAAQACAAMAAAAxAAwAAQACAAMAAAAyAAwAAQACAAMAAAAzAAwAAQACAAMAAAA0AAwAAQACAAMAAAA1AAwAAQACAAMAAAA2AAwAAQACAAMAAAA3AAwAAQACAAMAAAA4AAwAAQACAAMAAAA5AAwAAQACAAMAAAA6AAwAAQACAAMAAAA7AAwAAQACAAMAAAA8AAwAAQACAAMAAAA9AAwAAQACAAMAAAA+AAwAAQACAAMAAAA/AAwAAQACAAMAAABAAAwAAQACAAMAAABBAAwAAQACAAMAAABCAAwAAQACAAMAAABDAAwAAQACAAMAAABEAAwAAQACAAMAAABFAAwAAQACAAMAAABGAAwAAQACAAMAAABHAAwAAQACAAMAAABIAAwAAQACAAMAAABJAAwAAQACAAMAAABKAAwAAQACAAMAAABLAAwAAQACAAMAAABMAAwAAQACAAMAAABNAAwAAQACAAMAAABOAAwAAQACAAMAAABPAAwAAQACAAMAAABQAAwAAQACAAMAAABRAAwAAQACAAMAAABSAAwAAQACAAMAAABTAAwAAQACAAMAAABUAAwAAQACAAMAAABVAAwAAQACAAMAAABWAAwAAQACAAMAAABXAAwAAQACAAMAAABYAAwAAQACAAMAAABZAAwAAQACAAMAAABaAAwAAQACAAMAAABbAAwAAQACAAMAAABcAAwAAQACAAMAAABdAAwAAQACAAMAAAA=")
@@ -61,9 +73,12 @@ repeat_size = Vector2(288, 0)
 
 [node name="2" type="Sprite2D" parent="Trees"]
 z_index = 2
+texture_repeat = 2
 position = Vector2(0, 1)
 texture = ExtResource("7_qxlj4")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
 
 [node name="LeafTop" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.1, 1.1)
@@ -71,6 +86,9 @@ scroll_offset = Vector2(0, -1)
 repeat_size = Vector2(288, 0)
 
 [node name="1" type="Sprite2D" parent="LeafTop"]
+texture_repeat = 2
 position = Vector2(0, 1)
 texture = ExtResource("8_jo4av")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
