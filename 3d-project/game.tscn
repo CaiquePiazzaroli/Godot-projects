@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc2xnqujg4vda"]
+
+[ext_resource type="PackedScene" uid="uid://bwubejteb3yav" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://jduvg7pyqehs" path="res://assets/obstacle.tscn" id="2_e2o6t"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e2o6t"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_feb5d"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
+albedo_color = Color(0.5764706, 0.81960785, 0.2901961, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80nbo"]
+
+[sub_resource type="Sky" id="Sky_80nbo"]
+sky_material = SubResource("ProceduralSkyMaterial_80nbo")
+
+[sub_resource type="Environment" id="Environment_80nbo"]
+background_mode = 2
+sky = SubResource("Sky_80nbo")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Payer" parent="." instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2960515, -8.629398)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_e2o6t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.1701555, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_feb5d")
+surface_material_override/0 = SubResource("StandardMaterial3D_e2o6t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.6712938, 0.7411914, 0, -0.7411914, 0.6712938, -8.737022, 84.53659, 156.05038)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_80nbo")
+
+[node name="Obstacle2" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, 0.946846, 1.8855171, -1.352745)
+
+[node name="Obstacle6" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, -0.97553253, 1.8855171, 0.7416947)
+
+[node name="Obstacle7" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, 1.0329208, 1.8855171, 3.6110094)
+
+[node name="Obstacle3" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, -1.0616074, 1.8855171, -3.4759703)
+
+[node name="Obstacle4" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, 1.0042343, 1.8855171, -6.029578)
+
+[node name="Obstacle5" parent="." instance=ExtResource("2_e2o6t")]
+transform = Transform3D(18.19688, 0, 0, 0, 3.7351367, 0, 0, 0, 0.34662855, -1.2050667, 1.8855171, -7.8084965)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0028623743, 0.99999595, 0, -0.99999595, -0.0028623743, 3.3441412, 3.6860895, -8.949527)
+light_energy = 4.134
+light_indirect_energy = 2.814
+spot_range = 9.298
+spot_attenuation = -0.24
+spot_angle = 17.16
+spot_angle_attenuation = 7.999976
