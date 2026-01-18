@@ -5,7 +5,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_3sx2s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mco3e"]
-albedo_color = Color(0.9882353, 0.49803922, 0.49803922, 1)
+albedo_color = Color(0.10110284, 0.08111968, 0.6554717, 1)
 
 [node name="Obstacle" type="Node3D"]
 
