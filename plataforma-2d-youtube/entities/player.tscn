@@ -9,27 +9,27 @@
 radius = 6.0
 height = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e4p34"]
-atlas = ExtResource("2_b0kkn")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfe5m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0kkn"]
 atlas = ExtResource("2_b0kkn")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4p34"]
 atlas = ExtResource("2_b0kkn")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsoyl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfe5m"]
 atlas = ExtResource("2_b0kkn")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nm46"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qly61"]
 atlas = ExtResource("2_b0kkn")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0i8f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsoyl"]
+atlas = ExtResource("2_b0kkn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nm46"]
 atlas = ExtResource("3_rfe5m")
 region = Rect2(0, 0, 16, 16)
 
@@ -57,9 +57,12 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("3_e4p34")
 region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_i623q"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nm46"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0kkn")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e4p34")
 }, {
@@ -71,17 +74,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qsoyl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6nm46")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q0i8f")
+"texture": SubResource("AtlasTexture_6nm46")
 }],
 "loop": true,
 "name": &"jump",
@@ -108,22 +108,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_4qnqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-sprite_frames = SubResource("SpriteFrames_i623q")
-animation = &"jump"
+sprite_frames = SubResource("SpriteFrames_6nm46")
+animation = &"walk"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
-limit_top = 0
 limit_bottom = 208
