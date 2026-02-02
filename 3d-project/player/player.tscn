@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bwubejteb3yav"]
+
+[ext_resource type="Script" uid="uid://dnbm6mduhg2cv" path="res://player/player.gd" id="1_oul6g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+height = 1.0
+
+[node name="Player" type="CharacterBody3D" unique_id=2146290754]
+script = ExtResource("1_oul6g")
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="." unique_id=1127253540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kqu6x")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="." unique_id=1451697312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="Head" type="Node3D" parent="." unique_id=532067757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Eyes" type="Node3D" parent="Head" unique_id=1939404575]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes" unique_id=2062827569]
+
+[node name="SandupCheck" type="RayCast3D" parent="." unique_id=1238391550]
+target_position = Vector3(0, 2, 0)
