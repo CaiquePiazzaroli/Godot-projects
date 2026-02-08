@@ -6,13 +6,13 @@ extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Head/Eyes/Camera3D
 @onready var standing_collision_shape: CollisionShape3D = $StandingCollisionShape
 @onready var crouching_collision_shape: CollisionShape3D = $CrouchingCollisionShape
-@onready var sandup_check: RayCast3D = $SandupCheck
+@onready var standup_check: RayCast3D = $StandupCheck
 
 #Movement Variables
 const walking_speed: float = 3.0
 const sprinting_speed: float = 5.0
 const crouching_speed: float = 1.0
-var current_speed: float = 0.0
+var current_speed: float = 3.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO #Instances a Vector 2 With (0, 0)
 var direction: Vector3 = Vector3.ZERO #Instances a Vector 2 With (0, 0, 0)
@@ -36,7 +36,7 @@ var player_state: PlayerState = PlayerState.IDLE_STAND
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) #Hide cursor
 
-# From Node Clas: Called when there is an input event.
+# From Node Class: Called when there is an input event.
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit();
@@ -54,9 +54,10 @@ func _input(event: InputEvent) -> void:
 		# Limiting the head movement
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	
-# From Node Clas: Called once per frame
+# From Node Class: Called once per frame
 func _physics_process(delta: float) -> void:
-	# updatePlayerState()
+	
+	updatePlayerState()
 	# updateCamera()
 	
 	# Falling
@@ -64,8 +65,41 @@ func _physics_process(delta: float) -> void:
 		if velocity.y >= 0: # Jumping Upwards
 			velocity += get_gravity() * delta
 		else: # falling down
-			velocity += get_gravity() * delta * 2.0 
+			velocity += get_gravity() * delta
 	else: #jumping
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity	 # add velocity on Y 
+			
+			
+	# Movement Logic
+	input_dir = Input.get_vector("left","right","forward","backward");
+	
+	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta*10.0)
+	
+	if(direction):
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
+	else: #player wants to stop moving
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
+	
+	
 	move_and_slide()
+	
+func updatePlayerState() -> void:
+	moving = (input_dir != Vector2.ZERO)
+	if not is_on_floor():
+		player_state = PlayerState.AIR
+	else:
+		if Input.is_action_pressed("crouch"):
+			if not moving:
+				player_state = PlayerState.IDLE_CROUCH
+			else:
+				player_state = PlayerState.CROUCHING
+		elif !standup_check.is_colliding():
+			if not moving:
+				player_state = PlayerState.IDLE_STAND
+			elif Input.is_action_pressed("sprint"):
+				player_state = PlayerState.SPRINTING
+			else:
+				player_state = PlayerState.WALKING
