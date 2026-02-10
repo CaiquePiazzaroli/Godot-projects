@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Plataforma2D-Youtube"
 run/main_scene="uid://bq0xywgreastn"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -50,6 +54,13 @@ jump={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="terrain"
+2d_render/layer_2="player"
+2d_render/layer_3="enemies"
+2d_render/layer_4="endGame"
 
 [rendering]
 

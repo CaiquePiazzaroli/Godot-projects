@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bcv850oh3fye5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bc8j"]
+
+[node name="LevelEnd" type="Area2D" unique_id=375954382]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=131130944]
+shape = SubResource("RectangleShape2D_4bc8j")
+debug_color = Color(0.90476865, 0.22598952, 0.5251861, 0.41960785)
