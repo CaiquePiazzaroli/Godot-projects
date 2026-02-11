@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnkpo7k6w0k2u" path="res://sprites/1 - Penguin/Jump (16 x 16).png" id="3_rfe5m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qnqm"]
-radius = 5.0
+radius = 6.0
 height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0kkn"]
