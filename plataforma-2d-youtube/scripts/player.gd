@@ -4,19 +4,34 @@ enum PlayerState {
 	idle,
 	walk,
 	jump,
-	duck
+	fall,
+	duck,
+	slide
 }
 
 # Faz uma referencia ao nó da arvore que se chama AnimatedSprite2D 
 # Atribuindo a uma variável chamada anim do tipo AnimetadesSprite2D
 @onready var  anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 var direction: float = 0.0
-const SPEED = 70.0
+@export var max_speed = 180
+@export var acceleration  = 400
+@export var deceleration = 400
+@export var slide_deceleration = 100
+
 const JUMP_VELOCITY = -300
 var status: PlayerState
 var jump_count: int = 0
 @export var max_jump_count: int = 2
+
+func move(delta: float):
+	update_direction()
+	if direction: # se direction != 0 atualizar posicao (para esquerda ou direita)
+		# atualiza a posição em função da var SPEED
+		velocity.x = move_toward(velocity.x, max_speed * direction, acceleration * delta) # para o player devagar (não bruscamente)
+	else:
+		velocity.x = move_toward(velocity.x, 0, deceleration * delta) # para o player devagar (não bruscamente)
 
 
 func _ready() -> void:
@@ -24,19 +39,24 @@ func _ready() -> void:
 
 # Função chamada 60x por segundo
 func _physics_process(delta: float) -> void:
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
 	match status:
 		PlayerState.idle:
-			idle_state()
+			idle_state(delta)
 		PlayerState.walk:
-			walk_state()
+			walk_state(delta)
 		PlayerState.jump:
-			jump_state()
+			jump_state(delta)
+		PlayerState.fall:
+			fall_state(delta)
 		PlayerState.duck:
 			duck_state()
+		PlayerState.slide:
+			slide_state(delta)
 	
 	move_and_slide()
 
@@ -54,17 +74,33 @@ func go_to_jump_state():
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 	
+func go_to_fall_state():
+	status = PlayerState.fall
+	anim.play("fall")
+	
 func go_to_duck_state():
 	status = PlayerState.duck
-	collision_shape_2d.shape.height = 10.0
-	collision_shape_2d.position.y = 3
+	set_small_collider()
 	anim.play("duck")
+	
+func exit_from_duck_state():
+	set_large_collider()
 
-func idle_state():
-	move()
+func go_to_slide_state():
+	status = PlayerState.slide
+	set_small_collider()
+	anim.play("slide")
+
+func exit_from_slide_state():
+	set_large_collider()
+
+func idle_state(delta: float):
+	move(delta)
+	
 	if velocity.x != 0:
 		go_to_walk_state()
 		return
+		
 	if Input.is_action_just_pressed("jump"):
 		go_to_jump_state()
 		return
@@ -73,20 +109,41 @@ func idle_state():
 		go_to_duck_state()
 		return
 	
-func walk_state():
-	move()
+func walk_state(delta: float):
+	move(delta)
+	
 	if(velocity.x == 0):
 		go_to_idle_state()
 		return
+		
 	if Input.is_action_just_pressed("jump"):
 		go_to_jump_state()
 		return
+		
+	if Input.is_action_just_pressed("duck"):
+		go_to_slide_state()
 
-func jump_state():
-	move()
+	if !is_on_floor():
+		jump_count += 1
+		go_to_fall_state()
+
+func jump_state(delta: float):
+	move(delta)
 	
-	if Input.is_action_just_pressed("jump") && jump_count < max_jump_count:
+	if Input.is_action_just_pressed("jump") && can_jump():
 		go_to_jump_state()
+		return
+		
+	if velocity.y > 0: # Y > 0 indica que o player está caindo e < 0 que esta subindo
+		go_to_fall_state()
+		return
+		
+func fall_state(delta: float):
+	move(delta)
+	
+	if Input.is_action_just_pressed("jump") && can_jump():
+		go_to_jump_state()
+		return
 	
 	if is_on_floor():
 		jump_count = 0
@@ -98,21 +155,24 @@ func jump_state():
 
 func duck_state():
 	update_direction()
+	
 	if Input.is_action_just_released("duck"):
 		exit_from_duck_state()
 		go_to_idle_state()
 		return
 		
-func exit_from_duck_state():
-	collision_shape_2d.shape.height = 16.0
-	collision_shape_2d.position.y = 0
-
-func move():
-	update_direction()
-	if direction: # se direction != 0 atualizar posicao (para esquerda ou direita)
-		velocity.x = direction * SPEED # atualiza a posição em função da var SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED) # para o player devagar (não bruscamente)
+func slide_state(delta):
+	velocity.x = move_toward(velocity.x, 0, slide_deceleration * delta)
+	
+	if Input.is_action_just_released("duck"):
+		exit_from_slide_state()
+		go_to_walk_state()	
+		return
+		
+	if velocity.x == 0:
+		exit_from_slide_state()
+		go_to_duck_state()
+		return
 
 func update_direction():
 	direction = Input.get_axis("left", "right") # retorna -1 ou 1 
@@ -121,3 +181,14 @@ func update_direction():
 		anim.flip_h = true
 	elif direction > 0:
 		anim.flip_h = false
+		
+func can_jump() -> bool: 
+	return jump_count < max_jump_count;
+
+func set_small_collider():
+	collision_shape_2d.shape.height = 10.0
+	collision_shape_2d.position.y = 3
+	
+func set_large_collider():
+	collision_shape_2d.shape.height = 16.0
+	collision_shape_2d.position.y = 0

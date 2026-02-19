@@ -15,4 +15,4 @@ func _on_body_entered(_body: Node2D) -> void:
 
 # Muda de cena  para forest.tscn
 func load_next_scene():
-	print(get_tree().change_scene_to_file(scenePath + next_level + sceneExtension))
+	get_tree().change_scene_to_file(scenePath + next_level + sceneExtension)
