@@ -6,7 +6,8 @@ enum PlayerState {
 	jump,
 	fall,
 	duck,
-	slide
+	slide,
+	dead
 }
 
 # Faz uma referencia ao nó da arvore que se chama AnimatedSprite2D 
@@ -57,6 +58,8 @@ func _physics_process(delta: float) -> void:
 			duck_state()
 		PlayerState.slide:
 			slide_state(delta)
+		PlayerState.dead:
+			dead_state(delta)
 	
 	move_and_slide()
 
@@ -93,6 +96,12 @@ func go_to_slide_state():
 
 func exit_from_slide_state():
 	set_large_collider()
+
+func go_to_dead_state():
+	status = PlayerState.dead
+	anim.play("dead")
+	velocity = Vector2.ZERO
+	
 
 func idle_state(delta: float):
 	move(delta)
@@ -173,6 +182,9 @@ func slide_state(delta):
 		exit_from_slide_state()
 		go_to_duck_state()
 		return
+		
+func dead_state(_delta):
+	pass
 
 func update_direction():
 	direction = Input.get_axis("left", "right") # retorna -1 ou 1 
@@ -192,3 +204,10 @@ func set_small_collider():
 func set_large_collider():
 	collision_shape_2d.shape.height = 16.0
 	collision_shape_2d.position.y = 0
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if velocity.y > 0: # se o player estiver caindo e se as areas se encontrarem
+		area.get_parent().queue_free() #exclui o inimigo
+	else:
+		go_to_dead_state()
