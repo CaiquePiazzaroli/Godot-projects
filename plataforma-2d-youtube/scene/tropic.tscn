@@ -104,4 +104,4 @@ collision_mask = 2
 next_level = "forest"
 
 [node name="Skeleton" parent="." unique_id=1740121624 instance=ExtResource("1_t8vtq")]
-position = Vector2(42, 145)
+position = Vector2(48, 160)

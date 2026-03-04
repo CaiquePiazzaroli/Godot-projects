@@ -82,17 +82,6 @@ region = Rect2(80, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ef06p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_tjdhl")
-}],
-"loop": false,
-"name": &"dead",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("2_qly61")
 }],
 "loop": true,
@@ -106,6 +95,17 @@ animations = [{
 "loop": true,
 "name": &"fall",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ef06p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tjdhl")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,9 +189,7 @@ shape = SubResource("CapsuleShape2D_4qnqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1044311686]
 sprite_frames = SubResource("SpriteFrames_6nm46")
-animation = &"dead"
-frame = 1
-frame_progress = 1.0
+animation = &"hurt"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1220120254]
 
