@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://148ahnuwp8nk" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/1 - Waters_version_1.png" id="5_7xb8y"]
 [ext_resource type="PackedScene" uid="uid://b2bgt26c4hr8j" path="res://entities/camera.tscn" id="9_34ia6"]
 [ext_resource type="PackedScene" uid="uid://bcv850oh3fye5" path="res://entities/level_end.tscn" id="10_d18o5"]
+[ext_resource type="PackedScene" uid="uid://bnk6d6t5x8n7r" path="res://entities/spinning_bone.tscn" id="12_ei81g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7xb8y"]
 animations = [{
@@ -105,3 +106,6 @@ next_level = "forest"
 
 [node name="Skeleton" parent="." unique_id=1740121624 instance=ExtResource("1_t8vtq")]
 position = Vector2(48, 160)
+
+[node name="SpinningBone" parent="." unique_id=1185953208 instance=ExtResource("12_ei81g")]
+position = Vector2(271, 140)

@@ -14,6 +14,7 @@ enum PlayerState {
 # Atribuindo a uma variável chamada anim do tipo AnimetadesSprite2D
 @onready var  anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var reload_timer: Timer = $ReloadTimer
 
 var direction: float = 0.0
 @export var max_speed = 180
@@ -101,6 +102,7 @@ func go_to_hurt_state():
 	status = PlayerState.hurt
 	anim.play("hurt")
 	velocity = Vector2.ZERO
+	reload_timer.start() # Inicia um contador para resetar acena quando o player morrer
 	
 
 func idle_state(delta: float):
@@ -209,7 +211,13 @@ func set_large_collider():
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if velocity.y > 0: # se o player estiver caindo e se as areas se encontrarem
 		# area.get_parent().queue_free() #exclui o inimigo
-		area.get_parent().take_damage()
+		print(area.get_parent())
+		area.get_parent().take_damage() # Chama a função take_damage() no script do esqueleto
 		go_to_jump_state()
 	else:
-		go_to_hurt_state()
+		if status != PlayerState.hurt:
+			go_to_hurt_state()
+
+# Executada quando o tempo reload_timer acaba (1.5s)
+func _on_reload_timer_timeout() -> void:
+	get_tree().reload_current_scene() # Reseta a cena atual

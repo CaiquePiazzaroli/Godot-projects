@@ -61,9 +61,6 @@ sources/0 = SubResource("TileSetAtlasSource_gwku7")
 metadata/_edit_vertical_guides_ = [749.0]
 metadata/_edit_horizontal_guides_ = [84.0]
 
-[node name="Skeleton" parent="." unique_id=1740121624 instance=ExtResource("4_kmspj")]
-position = Vector2(380, 176)
-
 [node name="Tiles" type="Node" parent="." unique_id=1622468343]
 
 [node name="Terrain" type="TileMapLayer" parent="Tiles" unique_id=600211649]
@@ -80,9 +77,6 @@ tile_set = SubResource("TileSet_64es3")
 [node name="TileMapLayerDecoration" type="TileMapLayer" parent="Tiles" unique_id=321922608]
 tile_map_data = PackedByteArray("AAAtAAsAAAADAAUAAAA=")
 tile_set = ExtResource("3_gwku7")
-
-[node name="Skeleton" parent="Tiles" unique_id=560764698 instance=ExtResource("4_kmspj")]
-position = Vector2(284, 145)
 
 [node name="DistantTrees" type="Parallax2D" parent="." unique_id=795167923]
 scroll_scale = Vector2(0.2, 0.2)
@@ -132,9 +126,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 214.5)
 
-[node name="Skeleton" parent="TreeRow2" unique_id=228526634 instance=ExtResource("4_kmspj")]
-position = Vector2(439, 146)
-
 [node name="LeafPile" type="Parallax2D" parent="." unique_id=869343828]
 scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(0, -1)
@@ -159,6 +150,15 @@ texture = ExtResource("7_qxlj4")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 208)
+
+[node name="Skeleton" parent="." unique_id=1740121624 instance=ExtResource("4_kmspj")]
+position = Vector2(380, 176)
+
+[node name="Skeleton3" parent="." unique_id=560764698 instance=ExtResource("4_kmspj")]
+position = Vector2(284, 145)
+
+[node name="Skeleton2" parent="." unique_id=228526634 instance=ExtResource("4_kmspj")]
+position = Vector2(439, 145)
 
 [node name="Player" parent="." unique_id=1176301247 instance=ExtResource("2_gbfvw")]
 position = Vector2(253, 170)

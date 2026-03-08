@@ -42,8 +42,6 @@ func go_to_hurt_state():
 	hitbox.process_mode = Node.PROCESS_MODE_DISABLED #Desabilita o Hitbox, ja que o esqueleto morreu
 	velocity = Vector2.ZERO
 	
-
-	
 func walk_state(_delta):
 	# se velocity.x for positivo, anda para direita, se negativo, esquerda
 	velocity.x = SPEED * direction
