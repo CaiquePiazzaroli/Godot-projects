@@ -29,6 +29,8 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 Player=""
+LethalArea=""
+Enemies=""
 
 [input]
 
@@ -68,6 +70,7 @@ duck={
 2d_render/layer_2="player"
 2d_render/layer_3="enemies"
 2d_render/layer_4="endGame"
+2d_render/layer_5="lethal_area"
 
 [rendering]
 

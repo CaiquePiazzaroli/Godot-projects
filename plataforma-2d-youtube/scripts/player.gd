@@ -14,6 +14,8 @@ enum PlayerState {
 # Atribuindo a uma variável chamada anim do tipo AnimetadesSprite2D
 @onready var  anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hitbox_collision_shape: CollisionShape2D = $Hitbox/CollisionShape2D
+
 @onready var reload_timer: Timer = $ReloadTimer
 
 var direction: float = 0.0
@@ -65,6 +67,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func go_to_idle_state():
+	set_large_collider()
 	status = PlayerState.idle
 	anim.play("idle")
 
@@ -99,9 +102,10 @@ func exit_from_slide_state():
 	set_large_collider()
 
 func go_to_hurt_state():
+	set_hurt_collider()
 	status = PlayerState.hurt
 	anim.play("hurt")
-	velocity = Vector2.ZERO
+	velocity.x = 0
 	reload_timer.start() # Inicia um contador para resetar acena quando o player morrer
 	
 
@@ -203,20 +207,38 @@ func set_small_collider():
 	collision_shape_2d.shape.height = 10.0
 	collision_shape_2d.position.y = 3
 	
+	hitbox_collision_shape.shape.size.y = 10
+	hitbox_collision_shape.position.y = 3
+	
 func set_large_collider():
 	collision_shape_2d.shape.height = 16.0
 	collision_shape_2d.position.y = 0
-
-
+	
+	hitbox_collision_shape.shape.size.y = 15
+	hitbox_collision_shape.shape.size.x = 13
+	hitbox_collision_shape.position.y = 0.5
+	
+func set_hurt_collider():
+	hitbox_collision_shape.shape.size = Vector2.ZERO
+	 	
 func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemies"):
+		hit_enemy(area)
+	elif area.is_in_group("LethalArea"):
+		hit_lethal_area()
+
+func hit_enemy(area: Area2D):
 	if velocity.y > 0: # se o player estiver caindo e se as areas se encontrarem
 		# area.get_parent().queue_free() #exclui o inimigo
-		print(area.get_parent())
 		area.get_parent().take_damage() # Chama a função take_damage() no script do esqueleto
 		go_to_jump_state()
 	else:
+		print(area.get_parent())
 		if status != PlayerState.hurt:
 			go_to_hurt_state()
+
+func hit_lethal_area():
+	go_to_hurt_state()
 
 # Executada quando o tempo reload_timer acaba (1.5s)
 func _on_reload_timer_timeout() -> void:

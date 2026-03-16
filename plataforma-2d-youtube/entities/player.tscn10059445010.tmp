@@ -181,6 +181,11 @@ z_index = 3
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_merdl")
+max_speed = null
+acceleration = null
+deceleration = null
+slide_deceleration = null
+max_jump_count = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=941850999]
 z_index = 3

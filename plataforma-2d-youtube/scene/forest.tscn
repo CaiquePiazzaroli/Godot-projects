@@ -155,7 +155,7 @@ region_rect = Rect2(0, 0, 576, 208)
 position = Vector2(380, 176)
 
 [node name="Skeleton3" parent="." unique_id=560764698 instance=ExtResource("4_kmspj")]
-position = Vector2(284, 145)
+position = Vector2(326, 145)
 
 [node name="Skeleton2" parent="." unique_id=228526634 instance=ExtResource("4_kmspj")]
 position = Vector2(439, 145)
