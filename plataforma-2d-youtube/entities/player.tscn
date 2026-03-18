@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dnkpo7k6w0k2u" path="res://sprites/1 - Penguin/Jump (16 x 16).png" id="3_rfe5m"]
 [ext_resource type="Texture2D" uid="uid://dc48uayj7vhuc" path="res://sprites/1 - Penguin/Lying_On_Ground (16 x 16).png" id="3_tjdhl"]
 [ext_resource type="Texture2D" uid="uid://c6qsobrsii4j0" path="res://sprites/1 - Penguin/Belly_Sliding (16 x 16).png" id="6_6nm46"]
+[ext_resource type="Texture2D" uid="uid://bv6vdku8ow345" path="res://sprites/1 - Penguin/Wall_Slide (16x16).png" id="10_tjdhl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qnqm"]
 radius = 5.0
@@ -77,6 +78,22 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdgjc"]
 atlas = ExtResource("3_e4p34")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3pk"]
+atlas = ExtResource("10_tjdhl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgp7q"]
+atlas = ExtResource("10_tjdhl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n8aq"]
+atlas = ExtResource("10_tjdhl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28s6d"]
+atlas = ExtResource("10_tjdhl")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6nm46"]
 animations = [{
@@ -171,13 +188,30 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3pk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgp7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n8aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28s6d")
+}],
+"loop": true,
+"name": &"wall",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nm46"]
-size = Vector2(13, 15)
+size = Vector2(11, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1095365268 groups=["Player"]]
-z_index = 3
+z_index = 1
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_merdl")
@@ -189,14 +223,14 @@ shape = SubResource("CapsuleShape2D_4qnqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1044311686]
 sprite_frames = SubResource("SpriteFrames_6nm46")
-animation = &"idle"
+animation = &"fall"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1220120254]
 collision_layer = 2
 collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=89845133]
-position = Vector2(0, 0.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_6nm46")
 debug_color = Color(0.94504064, 7.2196126e-06, 0.59657484, 0.41960785)
 
@@ -204,5 +238,12 @@ debug_color = Color(0.94504064, 7.2196126e-06, 0.59657484, 0.41960785)
 wait_time = 1.5
 one_shot = true
 
+[node name="LeftWallDetector" type="RayCast2D" parent="." unique_id=698235049]
+target_position = Vector2(-7, 0)
+
+[node name="RightWallDetector" type="RayCast2D" parent="." unique_id=297158423]
+target_position = Vector2(7, 0)
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

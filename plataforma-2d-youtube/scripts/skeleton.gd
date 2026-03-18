@@ -16,7 +16,7 @@ const SPINNING_BONE = preload("uid://bnk6d6t5x8n7r")
 @onready var player_detector: RayCast2D = $PlayerDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
 
-const SPEED = 10
+const SPEED = 7.0
 const JUMP_VELOCITY = -400.0
 
 var status: SkeletonState
@@ -59,8 +59,12 @@ func go_to_hurt_state():
 	
 	
 func walk_state(_delta):
-	# se velocity.x for positivo, anda para direita, se negativo, esquerda
-	velocity.x = SPEED * direction
+	# Verifica se a animação está no frame de andar, ajuda a nao deixar o inimigo deslisando no  cenário
+	if anim.frame == 3 or anim.frame == 4:
+		# se velocity.x for positivo, anda para direita, se negativo, esquerda
+		velocity.x = SPEED * direction
+	else:
+		velocity.x = 0
 	
 	if wall_detector.is_colliding():
 		# Muda a direção do esqueleto e do Raycast para o lado oposto
