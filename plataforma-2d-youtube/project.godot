@@ -31,6 +31,7 @@ window/stretch/mode="canvas_items"
 Player=""
 LethalArea=""
 Enemies=""
+Water=""
 
 [input]
 
@@ -71,6 +72,7 @@ duck={
 2d_render/layer_3="enemies"
 2d_render/layer_4="endGame"
 2d_render/layer_5="lethal_area"
+2d_render/layer_6="water"
 
 [rendering]
 

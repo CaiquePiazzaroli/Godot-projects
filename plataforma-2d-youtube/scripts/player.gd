@@ -8,6 +8,7 @@ enum PlayerState {
 	duck,
 	slide,
 	wall,
+	swimming,
 	hurt
 }
 
@@ -28,8 +29,11 @@ var direction: float = 0.0
 @export var slide_deceleration = 100
 @export var wall_acceleration = 40
 @export var wall_jump_velocity = 240
+@export var max_water_speed = 100
+@export var water_acceleration = 200
+@export var jump_force = -100
 
-const JUMP_VELOCITY = -300
+const JUMP_VELOCITY = -280
 var status: PlayerState
 var jump_count: int = 0
 @export var max_jump_count: int = 2
@@ -67,6 +71,8 @@ func _physics_process(delta: float) -> void:
 			slide_state(delta)
 		PlayerState.wall:
 			wall_state(delta)
+		PlayerState.swimming:
+			swimming_state(delta)
 		PlayerState.hurt:
 			hurt_state(delta)
 	
@@ -112,6 +118,15 @@ func go_to_wall_state():
 	anim.play("wall")
 	velocity = Vector2.ZERO
 	jump_count = 0
+
+func go_to_swimming_state():
+	status = PlayerState.swimming
+	anim.play("swimming")
+	
+	# min = retorna o menor valor entre os numeros passados
+	# se a velocidade em y é maior que 100, então a velocidade se torna 100
+	# se for menor, a velocidade se mantem
+	velocity.y = min(velocity.y, 100) 
 
 func go_to_hurt_state():
 	if status == PlayerState.hurt:
@@ -184,7 +199,8 @@ func fall_state(delta: float):
 			go_to_walk_state()
 		return
 	
-	if left_wall_detector.is_colliding() or right_wall_detector.is_colliding():
+	# Is on wall é o metodo para não deslisar em plataforma, mas apenas paredes
+	if (left_wall_detector.is_colliding() or right_wall_detector.is_colliding()) && is_on_wall_only():
 		go_to_wall_state()
 		return
 
@@ -235,6 +251,20 @@ func wall_state(delta):
 		go_to_jump_state()	
 		return
 
+func swimming_state(delta):
+	update_direction()
+	
+	if direction:
+		velocity.x = move_toward(velocity.x, max_water_speed * direction, water_acceleration * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, water_acceleration * delta)
+		
+	velocity.y += water_acceleration * delta # define uma aceleração para baixo enquanto estiver na agua
+	velocity.y = min(velocity.y, max_water_speed) # limita a velocidade embaixo da agua
+	
+	if Input.is_action_just_pressed("jump"):
+		velocity.y = jump_force
+
 func hurt_state(delta):
 	apply_gravity(delta)
 
@@ -278,6 +308,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
 		go_to_hurt_state()
+	elif body.is_in_group("Water"):
+		go_to_swimming_state()
 
 func hit_enemy(area: Area2D):
 	if velocity.y > 0: # se o player estiver caindo e se as areas se encontrarem
@@ -293,3 +325,8 @@ func hit_lethal_area():
 # Executada quando o tempo reload_timer acaba (1.5s)
 func _on_reload_timer_timeout() -> void:
 	get_tree().reload_current_scene() # Reseta a cena atual
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Water"):
+		jump_count = 0
+		go_to_jump_state()

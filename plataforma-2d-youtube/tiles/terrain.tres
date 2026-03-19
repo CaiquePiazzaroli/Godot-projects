@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cb4asimtme8a5" path="res://sprites/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_udkip"]
 [ext_resource type="Texture2D" uid="uid://mqstojah8xug" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Terrain (16 x 16).png" id="2_8t5ty"]
 [ext_resource type="Texture2D" uid="uid://dx5lj6sk1gcrf" path="res://sprites/Seasonal Tilesets/3 - Tropics/Terrain (16 x 16).png" id="3_8t5ty"]
+[ext_resource type="Texture2D" uid="uid://ct7yba3fb471f" path="res://sprites/Seasonal Tilesets/3 - Tropics/undewater_terrain.png" id="4_selcm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8t5ty"]
 tile_data = PackedInt32Array(0, 589825, 3, 1, 655361, 3, 2, 851969, 3)
@@ -248,10 +249,24 @@ texture = ExtResource("3_8t5ty")
 5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:8/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nl455"]
+texture = ExtResource("4_selcm")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5756207, -5.755479, 8, -6.115196, 8, 8, -6.2950554, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.4749136, 8, -6.4749136, 8, 8, -8, 8, -8, -1.978445)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.115196, 5.75548, -5.935337, 6.115196, 8, -8, 8)
+
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_33cqm")
 sources/1 = SubResource("TileSetAtlasSource_selcm")
 sources/2 = SubResource("TileSetAtlasSource_4mtcj")
+sources/3 = SubResource("TileSetAtlasSource_nl455")
 pattern_0 = SubResource("TileMapPattern_8t5ty")
