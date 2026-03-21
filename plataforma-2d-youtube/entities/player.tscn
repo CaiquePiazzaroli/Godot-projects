@@ -254,6 +254,7 @@ size = Vector2(11, 15)
 z_index = 1
 collision_layer = 2
 collision_mask = 9
+platform_on_leave = 1
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=941850999]

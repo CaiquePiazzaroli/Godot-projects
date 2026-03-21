@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://148ahnuwp8nk" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/1 - Waters_version_1.png" id="5_7xb8y"]
 [ext_resource type="PackedScene" uid="uid://b2bgt26c4hr8j" path="res://entities/camera.tscn" id="9_34ia6"]
 [ext_resource type="PackedScene" uid="uid://bcv850oh3fye5" path="res://entities/level_end.tscn" id="10_d18o5"]
+[ext_resource type="PackedScene" uid="uid://cl1gki4jb2a0c" path="res://entities/moving_platform.tscn" id="13_ytc0w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7xb8y"]
 animations = [{
@@ -28,8 +29,6 @@ animations = [{
 }]
 
 [node name="Tropic" type="Node2D" unique_id=315602879 groups=["Player"]]
-metadata/_edit_horizontal_guides_ = [625.0, -544.0]
-metadata/_edit_vertical_guides_ = [-17.0]
 
 [node name="Tiles" type="Node" parent="." unique_id=569153862]
 
@@ -55,20 +54,8 @@ texture = ExtResource("1_4big0")
 centered = false
 offset = Vector2(288, 0)
 
-[node name="Parallax2DNuvensDeFundo" type="Parallax2D" parent="." unique_id=1542848844]
-scroll_scale = Vector2(0.8, 0.8)
-scroll_offset = Vector2(0, -23)
-repeat_size = Vector2(288, 0)
-repeat_times = 2
-
-[node name="Sprite2DNuvensDeFundo" type="Sprite2D" parent="Parallax2DNuvensDeFundo" unique_id=1701782045]
-position = Vector2(288, 0)
-texture = ExtResource("2_pss51")
-centered = false
-region_filter_clip_enabled = true
-
 [node name="Parallax2DNuvensFlutuantes" type="Parallax2D" parent="." unique_id=1041397079]
-scroll_scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(0.8, 1)
 scroll_offset = Vector2(0, -80)
 repeat_size = Vector2(288, 0)
 autoscroll = Vector2(-0.5, 0)
@@ -81,7 +68,21 @@ centered = false
 region_rect = Rect2(0, 0, 288, 208)
 region_filter_clip_enabled = true
 
+[node name="Parallax2DNuvensDeFundo" type="Parallax2D" parent="." unique_id=1542848844]
+scroll_scale = Vector2(0.6, 1)
+scroll_offset = Vector2(0, -48)
+repeat_size = Vector2(288, 0)
+repeat_times = 2
+
+[node name="Sprite2DNuvensDeFundo" type="Sprite2D" parent="Parallax2DNuvensDeFundo" unique_id=1701782045]
+position = Vector2(288, 0)
+texture = ExtResource("2_pss51")
+centered = false
+region_filter_clip_enabled = true
+
 [node name="Parallax2DIlhas" type="Parallax2D" parent="." unique_id=165819739]
+scroll_scale = Vector2(0.5, 1)
+scroll_offset = Vector2(0, -20)
 repeat_size = Vector2(288, 0)
 repeat_times = 2
 
@@ -111,3 +112,11 @@ next_level = "forest"
 
 [node name="Skeleton" parent="." unique_id=1740121624 instance=ExtResource("1_t8vtq")]
 position = Vector2(216, 160)
+
+[node name="AnimatableBody2D" parent="." unique_id=204455105 instance=ExtResource("13_ytc0w")]
+position = Vector2(59, 132)
+
+[node name="Sprite2DTarget" parent="AnimatableBody2D" index="1" unique_id=1482210724]
+position = Vector2(0, -76)
+
+[editable path="AnimatableBody2D"]

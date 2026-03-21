@@ -309,6 +309,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
 		go_to_hurt_state()
 	elif body.is_in_group("Water"):
+		print(status)
 		go_to_swimming_state()
 
 func hit_enemy(area: Area2D):
