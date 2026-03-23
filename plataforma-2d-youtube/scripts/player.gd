@@ -76,28 +76,39 @@ func _physics_process(delta: float) -> void:
 		PlayerState.hurt:
 			hurt_state(delta)
 	
+	if Input.is_action_just_pressed("death"):
+		go_to_hurt_state()
+	
 	move_and_slide()
+	
+func check_player_hurt():
+	return status == PlayerState.hurt
 
 func go_to_idle_state():
+	if check_player_hurt(): return
 	set_large_collider()
 	status = PlayerState.idle
 	anim.play("idle")
 
 func go_to_walk_state():
+	if check_player_hurt(): return
 	status = PlayerState.walk
 	anim.play("walk")
 
 func go_to_jump_state():
+	if check_player_hurt(): return
 	status = PlayerState.jump
 	anim.play("jump")
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 	
 func go_to_fall_state():
+	if check_player_hurt(): return
 	status = PlayerState.fall
 	anim.play("fall")
 	
 func go_to_duck_state():
+	if check_player_hurt(): return
 	status = PlayerState.duck
 	set_small_collider()
 	anim.play("duck")
@@ -106,6 +117,7 @@ func exit_from_duck_state():
 	set_large_collider()
 
 func go_to_slide_state():
+	if check_player_hurt(): return
 	status = PlayerState.slide
 	set_small_collider()
 	anim.play("slide")
@@ -114,12 +126,14 @@ func exit_from_slide_state():
 	set_large_collider()
 
 func go_to_wall_state():
+	if check_player_hurt(): return
 	status = PlayerState.wall
 	anim.play("wall")
 	velocity = Vector2.ZERO
 	jump_count = 0
 
 func go_to_swimming_state():
+	if check_player_hurt(): return
 	status = PlayerState.swimming
 	anim.play("swimming")
 	
@@ -129,9 +143,7 @@ func go_to_swimming_state():
 	velocity.y = min(velocity.y, 100) 
 
 func go_to_hurt_state():
-	if status == PlayerState.hurt:
-		return
-	set_hurt_collider()
+	if check_player_hurt(): return
 	status = PlayerState.hurt
 	anim.play("hurt")
 	velocity.x = 0
@@ -140,18 +152,19 @@ func go_to_hurt_state():
 func idle_state(delta: float):
 	apply_gravity(delta)
 	move(delta)
-	if velocity.x != 0:
-		go_to_walk_state()
-		return
-		
+
 	if Input.is_action_just_pressed("jump"):
 		go_to_jump_state()
 		return
-		
+
 	if Input.is_action_pressed("duck"):
 		go_to_duck_state()
 		return
-	
+
+	if velocity.x != 0:
+		go_to_walk_state()
+		return
+
 func walk_state(delta: float):
 	apply_gravity(delta)
 	move(delta)
@@ -293,9 +306,6 @@ func set_large_collider():
 	hitbox_collision_shape.shape.size.y = 15
 	hitbox_collision_shape.shape.size.x = 13
 	hitbox_collision_shape.position.y = 0.5
-	
-func set_hurt_collider():
-	hitbox_collision_shape.shape.size = Vector2.ZERO
 
 # Sinal que roda quando uma area Area2D colide 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -309,7 +319,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
 		go_to_hurt_state()
 	elif body.is_in_group("Water"):
-		print(status)
 		go_to_swimming_state()
 
 func hit_enemy(area: Area2D):

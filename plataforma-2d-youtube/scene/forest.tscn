@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://xy23xxywdru" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="4_e3l50"]
 [ext_resource type="TileSet" uid="uid://712tfkiadlup" path="res://tiles/lava.tres" id="4_ja8kk"]
 [ext_resource type="PackedScene" uid="uid://dffuuj8utkr5x" path="res://entities/skeleton.tscn" id="4_kmspj"]
+[ext_resource type="PackedScene" uid="uid://cujwgwwnpaepi" path="res://entities/broken_block.tscn" id="5_boiax"]
 [ext_resource type="Texture2D" uid="uid://mqstojah8xug" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Terrain (16 x 16).png" id="5_jxvlp"]
 [ext_resource type="Texture2D" uid="uid://bu5prk1a6qdio" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/2 - Trees.png" id="7_qxlj4"]
 [ext_resource type="Texture2D" uid="uid://dmh8asbm3yn46" path="res://sprites/Seasonal Tilesets/2 - Autumn Forest/Background parts/1 - Leaf_top.png" id="8_jo4av"]
@@ -86,6 +87,9 @@ tile_set = SubResource("TileSet_64es3")
 [node name="TileMapLayerDecoration" type="TileMapLayer" parent="Tiles" unique_id=321922608]
 tile_map_data = PackedByteArray("AAAtAAsAAAADAAUAAAA=")
 tile_set = ExtResource("3_gwku7")
+
+[node name="StaticBody2D" parent="Tiles" unique_id=391698932 instance=ExtResource("5_boiax")]
+position = Vector2(128, 145)
 
 [node name="DistantTrees" type="Parallax2D" parent="." unique_id=795167923]
 scroll_scale = Vector2(0.2, 0.2)

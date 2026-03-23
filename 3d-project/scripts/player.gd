@@ -30,6 +30,7 @@ enum PlayerState {
 	SPRINTING,
 	AIR
 }
+
 var player_state: PlayerState = PlayerState.IDLE_STAND
 
 # From Node Class: Runs when both the node and its children have entered the scene tree

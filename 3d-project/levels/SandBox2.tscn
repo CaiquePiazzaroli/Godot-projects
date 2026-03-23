@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dt83xo71ayg34"]
+
+[ext_resource type="Texture2D" uid="uid://pjfs6a7xfs30" path="res://textures/prototype-textures/PNG/Dark/texture_08.png" id="1_041vl"]
+[ext_resource type="PackedScene" uid="uid://bwubejteb3yav" path="res://player/player.tscn" id="2_gfi6k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m704d"]
+albedo_texture = ExtResource("1_041vl")
+uv1_triplanar = true
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=2080265066]
+size = Vector3(10, 0.2, 10)
+material = SubResource("StandardMaterial3D_m704d")
+
+[node name="Player" parent="." unique_id=2146290754 instance=ExtResource("2_gfi6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6672845, 2.6185508, -0.9754286)
