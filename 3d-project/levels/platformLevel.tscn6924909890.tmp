@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ir8ovl0iavh8"]
+
+[ext_resource type="PackedScene" uid="uid://boeklx3n5dvwo" path="res://Camera/Camera3D3rdPerson.tscn" id="1_bnlj7"]
+[ext_resource type="Texture2D" uid="uid://dfgtkhxdq1k28" path="res://textures/prototype-textures/PNG/Dark/texture_13.png" id="2_o0vog"]
+[ext_resource type="PackedScene" uid="uid://c6x3ohqvmr1fu" path="res://player/ThirdPersonPlayer.tscn" id="3_g3l0v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tsgde"]
+
+[sub_resource type="Sky" id="Sky_pmfem"]
+sky_material = SubResource("ProceduralSkyMaterial_tsgde")
+
+[sub_resource type="Environment" id="Environment_tsgde"]
+background_mode = 2
+sky = SubResource("Sky_pmfem")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmfem"]
+albedo_texture = ExtResource("2_o0vog")
+uv1_triplanar = true
+
+[node name="World" type="Node3D" unique_id=1389480977]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1148118884]
+environment = SubResource("Environment_tsgde")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1363378198]
+transform = Transform3D(1, 0, 0, 0, 0.1022891, 0.99475473, 0, -0.99475473, 0.1022891, -2.5791702, 2.842165, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=933052629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12887025, 0)
+use_collision = true
+size = Vector3(10, 0.2, 1.4287109)
+material = SubResource("StandardMaterial3D_pmfem")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=657106202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.252171, 1.0904377, 0)
+use_collision = true
+size = Vector3(10, 0.2, 1.4287109)
+material = SubResource("StandardMaterial3D_pmfem")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=628453104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.446466, 2.3095186, 0)
+use_collision = true
+size = Vector3(10, 0.2, 1.4287109)
+material = SubResource("StandardMaterial3D_pmfem")
+
+[node name="CharacterBody3D" parent="." unique_id=1519919477 instance=ExtResource("3_g3l0v")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.3214374, 0, 0)
+playerVelocity = 400
+jumpVelocity = null
+
+[node name="Camera3D" parent="." unique_id=2138470257 instance=ExtResource("1_bnlj7")]

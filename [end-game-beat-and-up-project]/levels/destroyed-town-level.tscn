@@ -1,0 +1,85 @@
+[gd_scene format=4 uid="uid://dxjd6k8mmapw"]
+
+[ext_resource type="PackedScene" uid="uid://bti05wfvillbt" path="res://entities/player.tscn" id="1_m24el"]
+[ext_resource type="Texture2D" uid="uid://b7lcevmpr618p" path="res://sprites/backgroundCity.png" id="1_xav7p"]
+[ext_resource type="Texture2D" uid="uid://dyml6b4exu267" path="res://sprites/Sprite-0007-Sheet-Sheet.png" id="2_rwnq5"]
+[ext_resource type="Texture2D" uid="uid://8i4sejxweh6i" path="res://sprites/Sprite-0008-Sheet.png" id="3_54r8c"]
+[ext_resource type="Texture2D" uid="uid://dqwrc8dsm13lf" path="res://sprites/Sprite-0008-SheetV2.png" id="3_xenkc"]
+[ext_resource type="PackedScene" uid="uid://bk6jio7udgkp0" path="res://entities/Camera.tscn" id="6_ke3t4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xenkc"]
+texture = ExtResource("3_54r8c")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xav7p"]
+texture = ExtResource("3_xenkc")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xav7p"]
+sources/0 = SubResource("TileSetAtlasSource_xenkc")
+sources/1 = SubResource("TileSetAtlasSource_xav7p")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54r8c"]
+texture = ExtResource("2_rwnq5")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_xenkc"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_54r8c")
+
+[node name="DestroyedTownLevel" type="Node2D" unique_id=417801196]
+metadata/_edit_vertical_guides_ = [2138.0, 1.0]
+metadata/_edit_horizontal_guides_ = [-913.0, 191.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=409724663]
+texture_filter = 1
+position = Vector2(0, -918.00006)
+scale = Vector2(6.6874995, 6.0777783)
+texture = ExtResource("1_xav7p")
+centered = false
+
+[node name="Player" parent="." unique_id=761504039 instance=ExtResource("1_m24el")]
+z_index = 1
+position = Vector2(18, 75)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1998954778]
+texture_filter = 1
+tile_set = SubResource("TileSet_xav7p")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1200522000]
+texture_filter = 1
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_xenkc")
+
+[node name="Camera" parent="." unique_id=33843058 instance=ExtResource("6_ke3t4")]
+position = Vector2(160, 95)
+limit_left = 0
+limit_top = -913
+limit_right = 2138
+limit_bottom = 190

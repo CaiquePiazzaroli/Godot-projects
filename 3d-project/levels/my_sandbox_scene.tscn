@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bab6ijmxyvojh"]
+
+[ext_resource type="Texture2D" uid="uid://dfgtkhxdq1k28" path="res://textures/prototype-textures/PNG/Dark/texture_13.png" id="1_lfqfy"]
+[ext_resource type="Texture2D" uid="uid://cgavqi1nhi71s" path="res://textures/prototype-textures/PNG/Purple/texture_09.png" id="2_0t7ps"]
+[ext_resource type="Texture2D" uid="uid://ch8fw2ow2gs3s" path="res://textures/prototype-textures/PNG/Green/texture_09.png" id="3_f6ctw"]
+[ext_resource type="Texture2D" uid="uid://2sl0mg8va4jc" path="res://textures/prototype-textures/PNG/Orange/texture_09.png" id="4_b6w6n"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8c1bf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_37ywa"]
+sky_material = SubResource("ProceduralSkyMaterial_8c1bf")
+
+[sub_resource type="Environment" id="Environment_jag2d"]
+background_mode = 2
+sky = SubResource("Sky_37ywa")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bss61"]
+albedo_texture = ExtResource("1_lfqfy")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipijk"]
+albedo_texture = ExtResource("2_0t7ps")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4236h"]
+albedo_texture = ExtResource("3_f6ctw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wuuw"]
+albedo_texture = ExtResource("4_b6w6n")
+uv1_triplanar = true
+
+[node name="MySandboxScene" type="Node3D" unique_id=1006850502]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=282233360]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1916655597]
+environment = SubResource("Environment_jag2d")
+
+[node name="map" type="Node3D" parent="." unique_id=1509383085]
+
+[node name="floor" type="CSGBox3D" parent="map" unique_id=507403524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16020012, -0.59790146, 0.26699066)
+material_override = SubResource("StandardMaterial3D_bss61")
+use_collision = true
+collision_mask = 2
+size = Vector3(100, 1, 100)
+
+[node name="box" type="CSGBox3D" parent="map" unique_id=1692150403]
+transform = Transform3D(0.93174034, 0, -1.4568657, 0, 1.7293345, 0, 1.4568657, 0, 0.93174034, -2.3848357, 0.81175923, 2.8304455)
+material_override = SubResource("StandardMaterial3D_ipijk")
+use_collision = true
+collision_mask = 2
+
+[node name="box2" type="CSGBox3D" parent="map" unique_id=189773002]
+transform = Transform3D(0.93174034, 0, -1.4568657, 0, 1.7293345, 0, 1.4568657, 0, 0.93174034, 3.0321102, 0.81175923, 3.086077)
+material_override = SubResource("StandardMaterial3D_4236h")
+use_collision = true
+collision_mask = 2
+
+[node name="box3" type="CSGBox3D" parent="map" unique_id=1407111918]
+transform = Transform3D(0.5387855, 0, -0.842443, 0, 1, 0, 0.842443, 0, 0.5387855, 0.23269266, 0.4117595, -0.05799675)
+material_override = SubResource("StandardMaterial3D_6wuuw")
+use_collision = true
+collision_mask = 2
