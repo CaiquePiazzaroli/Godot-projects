@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bti05wfvillbt"]
 
-[ext_resource type="Texture2D" uid="uid://f4jkwoala3sp" path="res://sprites/character-idlet.png" id="1_b0kkn"]
+[ext_resource type="Texture2D" uid="uid://f4jkwoala3sp" path="res://sprites/character/character-idlet.png" id="1_b0kkn"]
 [ext_resource type="Script" uid="uid://d32ie47haveaa" path="res://scripts/player.gd" id="1_e4p34"]
-[ext_resource type="Texture2D" uid="uid://bfmpw7eo7ggkl" path="res://sprites/character-walkt.png" id="2_e4p34"]
+[ext_resource type="Texture2D" uid="uid://bfmpw7eo7ggkl" path="res://sprites/character/character-walkt.png" id="2_e4p34"]
+[ext_resource type="Texture2D" uid="uid://22wnvgmgiog" path="res://sprites/character/Character-V1-jump.png" id="3_rfe5m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfe5m"]
 atlas = ExtResource("1_b0kkn")
@@ -20,6 +21,10 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("1_b0kkn")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef06p"]
+atlas = ExtResource("3_rfe5m")
+region = Rect2(16, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjdhl"]
 atlas = ExtResource("2_e4p34")
 region = Rect2(16, 0, 16, 16)
@@ -28,9 +33,9 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("2_e4p34")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dchgp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i623q"]
 atlas = ExtResource("2_e4p34")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3f3p"]
 animations = [{
@@ -53,13 +58,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ef06p")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tjdhl")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x08pd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dchgp")
+"texture": SubResource("AtlasTexture_i623q")
 }],
 "loop": true,
 "name": &"walk",
@@ -68,6 +81,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qly61"]
 size = Vector2(4.166667, 13.791667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfe5m"]
+size = Vector2(19, 30)
 
 [node name="Player" type="CharacterBody2D" unique_id=761504039 groups=["player"]]
 collision_layer = 2
@@ -79,9 +95,15 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u3f3p")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.9843451
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=842780062]
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_qly61")
+
+[node name="ActionArea2D" type="Area2D" parent="." unique_id=1121985634]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea2D" unique_id=2118275337]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_rfe5m")
+debug_color = Color(0.9369294, 0.06591474, 0.60109645, 0.41960785)

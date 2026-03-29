@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfmpw7eo7ggkl"
-path="res://.godot/imported/character-walkt.png-8499bc58a30fdae1b4ca93e95107fcca.ctex"
+uid="uid://6ndmu2key1y4"
+path="res://.godot/imported/enemy-zombie-walk.png-e7a853f6dfad1ac3d2837eec56e8691f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/character-walkt.png"
-dest_files=["res://.godot/imported/character-walkt.png-8499bc58a30fdae1b4ca93e95107fcca.ctex"]
+source_file="res://sprites/enemy/enemy-zombie-walk.png"
+dest_files=["res://.godot/imported/enemy-zombie-walk.png-e7a853f6dfad1ac3d2837eec56e8691f.ctex"]
 
 [params]
 
