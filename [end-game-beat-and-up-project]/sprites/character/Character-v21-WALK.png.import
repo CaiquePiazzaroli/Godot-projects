@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs8cvg251358j"
-path="res://.godot/imported/backgroundCityDistant.png-0277cec03292307009d5c911c3dcf9d9.ctex"
+uid="uid://bi3mksq7xyn5c"
+path="res://.godot/imported/Character-v21-WALK.png-216ec4d1b340ef459f86b63f2d5bfac2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/backgroundCityDistant.png"
-dest_files=["res://.godot/imported/backgroundCityDistant.png-0277cec03292307009d5c911c3dcf9d9.ctex"]
+source_file="res://sprites/character/Character-v21-WALK.png"
+dest_files=["res://.godot/imported/Character-v21-WALK.png-216ec4d1b340ef459f86b63f2d5bfac2.ctex"]
 
 [params]
 

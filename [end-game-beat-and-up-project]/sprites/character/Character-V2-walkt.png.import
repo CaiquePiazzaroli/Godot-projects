@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7lcevmpr618p"
-path="res://.godot/imported/backgroundCity.png-3a998d2160af9149a8ec29b96bb7285f.ctex"
+uid="uid://qlryd1w6bedn"
+path="res://.godot/imported/Character-V2-walkt.png-078e0bbb17973800c6048a92cc326254.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/backgroundCity.png"
-dest_files=["res://.godot/imported/backgroundCity.png-3a998d2160af9149a8ec29b96bb7285f.ctex"]
+source_file="res://sprites/character/Character-V2-walkt.png"
+dest_files=["res://.godot/imported/Character-V2-walkt.png-078e0bbb17973800c6048a92cc326254.ctex"]
 
 [params]
 

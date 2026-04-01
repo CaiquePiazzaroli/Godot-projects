@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqwrc8dsm13lf"
-path="res://.godot/imported/Sprite-0008-SheetV2.png-e7ef3f00d42311bbcd36878d9e11db0b.ctex"
+uid="uid://dam3fybq6rcgm"
+path="res://.godot/imported/enemy-zombie-attackt.png-8f89bc056feb1850f4a2a01de01ed612.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Sprite-0008-SheetV2.png"
-dest_files=["res://.godot/imported/Sprite-0008-SheetV2.png-e7ef3f00d42311bbcd36878d9e11db0b.ctex"]
+source_file="res://sprites/enemy/enemy-zombie-attackt.png"
+dest_files=["res://.godot/imported/enemy-zombie-attackt.png-8f89bc056feb1850f4a2a01de01ed612.ctex"]
 
 [params]
 

@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dam3fybq6rcgm" path="res://sprites/enemy/enemy-zombie-attackt.png" id="2_fm1it"]
 [ext_resource type="Texture2D" uid="uid://6ndmu2key1y4" path="res://sprites/enemy/enemy-zombie-walk.png" id="2_i0t6b"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5x4"]
-size = Vector2(12, 33)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qca0a"]
 atlas = ExtResource("2_fm1it")
 region = Rect2(0, 0, 16, 16)
@@ -43,7 +40,7 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_fkgfd"]
 animations = [{
 "frames": [{
-"duration": 0.8,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_qca0a")
 }, {
 "duration": 1.0,
@@ -82,40 +79,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fm1it"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5x4"]
+size = Vector2(12, 33)
 
 [node name="EnemyZombie" type="CharacterBody2D" unique_id=418658203]
 collision_layer = 8
 script = ExtResource("1_oydl2")
 
-[node name="ZombieCollision" type="CollisionShape2D" parent="." unique_id=1669845847]
-position = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_cd5x4")
+[node name="ZombieVisionRayCast2D" type="RayCast2D" parent="." unique_id=1758629634]
+target_position = Vector2(-49, 0)
+collision_mask = 2
 
-[node name="ZombieAnimation" type="AnimatedSprite2D" parent="." unique_id=1162517997]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1162517997]
 texture_filter = 1
 scale = Vector2(2.2, 2.2)
 sprite_frames = SubResource("SpriteFrames_fkgfd")
-animation = &"zombie_walk"
+animation = &"attack"
 autoplay = "zombie_idle"
+frame_progress = 0.6990128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1669845847]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_cd5x4")
 
 [node name="ZombieWalkTimer" type="Timer" parent="." unique_id=338449396]
 wait_time = 5.0
 
-[node name="ZombieAttackRayCast2D" type="RayCast2D" parent="." unique_id=1758629634]
-target_position = Vector2(-14, 0)
-collision_mask = 2
-
-[node name="ZombieHitArea" type="Area2D" parent="." unique_id=1883214184]
-collision_layer = 8
-collision_mask = 2
-
-[node name="ZombieHitAreaCollision" type="CollisionShape2D" parent="ZombieHitArea" unique_id=1267849238]
-position = Vector2(-10, 0)
-shape = SubResource("CapsuleShape2D_fm1it")
-disabled = true
-debug_color = Color(0.9411765, 0, 0, 0.41960785)
-
 [connection signal="timeout" from="ZombieWalkTimer" to="." method="_on_zombie_walk_timer_timeout"]
-[connection signal="body_entered" from="ZombieHitArea" to="." method="_on_hit_area_body_entered"]

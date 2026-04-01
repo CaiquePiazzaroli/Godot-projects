@@ -2,15 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://f4jkwoala3sp" path="res://sprites/character/character-idlet.png" id="1_b0kkn"]
 [ext_resource type="Script" uid="uid://d32ie47haveaa" path="res://scripts/player.gd" id="1_e4p34"]
+[ext_resource type="Texture2D" uid="uid://bfmpw7eo7ggkl" path="res://sprites/character/character-walkt.png" id="2_e4p34"]
 [ext_resource type="Texture2D" uid="uid://ppbvo4v7mmo5" path="res://sprites/character/Character-V1-Death.png" id="2_qsoyl"]
 [ext_resource type="Texture2D" uid="uid://bvyjpe0oxwq1n" path="res://sprites/character/Character-V1-jumpt.png" id="3_qly61"]
-[ext_resource type="Texture2D" uid="uid://bi3mksq7xyn5c" path="res://sprites/character/Character-v21-WALK.png" id="5_qly61"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qly61"]
-size = Vector2(4.166667, 13.791667)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfe5m"]
-size = Vector2(19, 30)
+[ext_resource type="Texture2D" uid="uid://qlryd1w6bedn" path="res://sprites/character/Character-V2-walkt.png" id="4_rfe5m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdgjc"]
 atlas = ExtResource("2_qsoyl")
@@ -49,20 +44,20 @@ atlas = ExtResource("3_qly61")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i623q"]
-atlas = ExtResource("5_qly61")
+atlas = ExtResource("4_rfe5m")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rie4"]
-atlas = ExtResource("5_qly61")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjdhl"]
+atlas = ExtResource("4_rfe5m")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dp3pk"]
-atlas = ExtResource("5_qly61")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dchgp"]
+atlas = ExtResource("2_e4p34")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgp7q"]
-atlas = ExtResource("5_qly61")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x08pd"]
+atlas = ExtResource("4_rfe5m")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3f3p"]
 animations = [{
@@ -79,7 +74,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oprnr")
 }],
-"loop": false,
+"loop": true,
 "name": &"death",
 "speed": 2.0
 }, {
@@ -113,24 +108,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_i623q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8rie4")
+"texture": SubResource("AtlasTexture_tjdhl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dp3pk")
+"texture": SubResource("AtlasTexture_dchgp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cgp7q")
+"texture": SubResource("AtlasTexture_x08pd")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 6.0
+"speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qly61"]
+size = Vector2(4.166667, 13.791667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfe5m"]
+size = Vector2(19, 30)
 
 [node name="Player" type="CharacterBody2D" unique_id=761504039 groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_e4p34")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=842780062]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427512738]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_u3f3p")
+animation = &"death"
+autoplay = "idle"
+frame_progress = 0.48684296
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=842780062]
+visible = false
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_qly61")
@@ -142,11 +152,3 @@ visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_rfe5m")
 debug_color = Color(0.9369294, 0.06591474, 0.60109645, 0.41960785)
-
-[node name="PlayerAnimation" type="AnimatedSprite2D" parent="." unique_id=1427512738]
-texture_filter = 1
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_u3f3p")
-animation = &"walk"
-autoplay = "idle"
-frame_progress = 0.6155463
