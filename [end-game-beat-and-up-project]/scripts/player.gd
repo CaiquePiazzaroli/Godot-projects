@@ -53,7 +53,6 @@ func go_to_jump_state():
 
 func go_to_death_state():
 	state = PlayerState.death
-	player_collision.disabled = true
 	player_animation.play("death")
 	velocity.x = 0
 
@@ -68,7 +67,7 @@ func idle_state(delta:float) -> void:
 	if direction != 0: # Andar
 		go_to_walk_state()
 		return
-	
+
 func walk_state(delta: float) -> void:
 	apply_gravity(delta)
 	move(delta)
@@ -89,7 +88,8 @@ func jump_state(delta: float):
 		go_to_idle_state()
 		return
 
-func death_state(_delta:float):
+func death_state(delta:float):
+	apply_gravity(delta)
 	pass
 
 # Gravidade - Atribui uma velocidade positiva no eixo Y fazendo o player cair

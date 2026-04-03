@@ -59,11 +59,7 @@ sources/1 = SubResource("TileSetAtlasSource_xav7p")
 metadata/_edit_vertical_guides_ = [2108.0]
 metadata/_edit_horizontal_guides_ = [-424.0]
 
-[node name="EnemyZombie" parent="." unique_id=418658203 instance=ExtResource("1_vque4")]
-z_index = 1
-position = Vector2(328, 162)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=409724663]
+[node name="Background" type="Sprite2D" parent="." unique_id=409724663]
 texture_filter = 1
 position = Vector2(0, -1348.0001)
 scale = Vector2(6.5875, 8.466667)
@@ -72,7 +68,11 @@ centered = false
 
 [node name="Player" parent="." unique_id=761504039 instance=ExtResource("1_m24el")]
 z_index = 1
-position = Vector2(27, 96)
+position = Vector2(26, 160)
+
+[node name="EnemyZombie" parent="." unique_id=418658203 instance=ExtResource("1_vque4")]
+z_index = 1
+position = Vector2(213, 159)
 
 [node name="TileMapLayerTerrain" type="TileMapLayer" parent="." unique_id=1200522000]
 texture_filter = 1

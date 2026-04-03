@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cjb3rm6kt5qvq" path="res://scripts/zombie.gd" id="1_oydl2"]
 [ext_resource type="Texture2D" uid="uid://dam3fybq6rcgm" path="res://sprites/enemy/enemy-zombie-attackt.png" id="2_fm1it"]
 [ext_resource type="Texture2D" uid="uid://6ndmu2key1y4" path="res://sprites/enemy/enemy-zombie-walk.png" id="2_i0t6b"]
+[ext_resource type="Texture2D" uid="uid://dbwfg32d2n8gx" path="res://sprites/enemy/enemy-zombie-chase.png" id="3_qca0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd5x4"]
 size = Vector2(12, 33)
@@ -15,6 +16,18 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hud2l"]
 atlas = ExtResource("2_fm1it")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwpml"]
+atlas = ExtResource("3_qca0a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1atck"]
+atlas = ExtResource("3_qca0a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x7dm"]
+atlas = ExtResource("3_qca0a")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1q00c"]
 atlas = ExtResource("1_mc23i")
@@ -43,7 +56,7 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_fkgfd"]
 animations = [{
 "frames": [{
-"duration": 0.8,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_qca0a")
 }, {
 "duration": 1.0,
@@ -52,6 +65,20 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwpml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1atck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x7dm")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -97,7 +124,7 @@ shape = SubResource("RectangleShape2D_cd5x4")
 texture_filter = 1
 scale = Vector2(2.2, 2.2)
 sprite_frames = SubResource("SpriteFrames_fkgfd")
-animation = &"zombie_walk"
+animation = &"chase"
 autoplay = "zombie_idle"
 
 [node name="ZombieWalkTimer" type="Timer" parent="." unique_id=338449396]
@@ -116,6 +143,12 @@ position = Vector2(-10, 0)
 shape = SubResource("CapsuleShape2D_fm1it")
 disabled = true
 debug_color = Color(0.9411765, 0, 0, 0.41960785)
+
+[node name="ZombieVision" type="RayCast2D" parent="." unique_id=2020798787]
+position = Vector2(0.99999994, 3)
+scale = Vector2(1.00129, 1.626894)
+target_position = Vector2(-117, 0)
+collision_mask = 2
 
 [connection signal="timeout" from="ZombieWalkTimer" to="." method="_on_zombie_walk_timer_timeout"]
 [connection signal="body_entered" from="ZombieHitArea" to="." method="_on_hit_area_body_entered"]
