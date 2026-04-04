@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var zombie_velocity: int = -10
 @onready var zombie_hit_area_collision: CollisionShape2D = $ZombieHitArea/ZombieHitAreaCollision
 @onready var zombie_vision: RayCast2D = $ZombieVision
+@onready var zombie_back_detector: RayCast2D = $ZombieBackDetectorRayCast2D
 
 var direction: float = 0.0
 var state: ZombieState
@@ -20,6 +21,7 @@ enum ZombieState {
 func _ready() -> void:
 	go_to_walk_state()
 	zombie_walk_timer.start()
+	zombie_back_detector.enabled = false
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -42,6 +44,7 @@ func go_to_walk_state() -> void:
 
 func go_to_attack_state() -> void: 
 	zombie_animation.play("attack")
+	zombie_back_detector.enabled = true
 	state = ZombieState.attack
 
 func go_to_chase_state() -> void:
@@ -81,7 +84,11 @@ func attack_state(delta:float):
 	
 	if !zombie_animation.is_playing():
 		zombie_hit_area_collision.disabled = true #Desativa a colisão do hit
-		go_to_walk_state()
+		
+		if zombie_back_detector.is_colliding(): # Verifica se o player está nas costas
+			invertZombieDirection()
+		zombie_back_detector.enabled = false # Desativa o detector das costas
+		go_to_walk_state() # Muda para o walk
 		return
 
 func chase_state(delta:float) -> void: 

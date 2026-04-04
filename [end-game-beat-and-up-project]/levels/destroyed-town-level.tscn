@@ -70,9 +70,13 @@ centered = false
 z_index = 1
 position = Vector2(26, 160)
 
-[node name="EnemyZombie" parent="." unique_id=418658203 instance=ExtResource("1_vque4")]
+[node name="EnemyZombie2" parent="." unique_id=418658203 instance=ExtResource("1_vque4")]
 z_index = 1
-position = Vector2(213, 159)
+position = Vector2(262, 160)
+
+[node name="EnemyZombie" parent="." unique_id=1978541418 instance=ExtResource("1_vque4")]
+z_index = 1
+position = Vector2(441, 159)
 
 [node name="TileMapLayerTerrain" type="TileMapLayer" parent="." unique_id=1200522000]
 texture_filter = 1
