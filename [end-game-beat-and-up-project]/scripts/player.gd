@@ -7,6 +7,11 @@ enum PlayerState {
 	death
 }
 
+enum WeaponState {
+	fist,
+	fixedKey
+}
+
 @export var life: int = 100
 @export var acceleration = 400
 @export var max_speed = 50
@@ -14,10 +19,13 @@ enum PlayerState {
 @onready var player_animation: AnimatedSprite2D = $PlayerAnimation
 @onready var player_collision: CollisionShape2D = $PlayerCollision
 
+
 var direction: float = 0.0
 var state : PlayerState
+var weapon : WeaponState
 
 func _ready() -> void:
+	weapon = WeaponState.fist
 	go_to_idle_state()
 
 func _physics_process(delta: float) -> void:
@@ -36,24 +44,24 @@ func _input(_event: InputEvent) -> void:
 		get_tree().quit()
 		return
 	if Input.is_action_just_pressed("death"):
-		go_to_death_state()
+		set_weapon("fist")
 
 func go_to_idle_state():
 	state = PlayerState.idle #altera estado para idle
-	player_animation.play("idle") # muda anim para idle
+	player_animation.play(get_base_animation() + get_weapon_animation()) # muda anim para idle
 
 func go_to_walk_state():
 	state = PlayerState.walk # altera estado para walk
-	player_animation.play("walk") # muda anim para walk
+	player_animation.play(get_base_animation() + get_weapon_animation()) # muda anim para walk
 
 func go_to_jump_state():
 	state = PlayerState.jump #altera estado para jump
-	player_animation.play("jump") # Muda animação
+	player_animation.play(get_base_animation() + get_weapon_animation()) # Muda animação
 	velocity.y = jump_velocity # atribui velocidade de pular
 
 func go_to_death_state():
 	state = PlayerState.death
-	player_animation.play("death")
+	player_animation.play(get_base_animation() + get_weapon_animation())
 	velocity.x = 0
 
 func idle_state(delta:float) -> void:
@@ -115,3 +123,41 @@ func update_direction():
 		player_animation.flip_h = false
 	elif direction < 0:
 		player_animation.flip_h = true
+
+func get_base_animation() -> String:
+	match state:
+		PlayerState.idle:
+			return "idle"
+		PlayerState.walk:
+			return "walk"
+		PlayerState.jump:
+			return "jump"
+		PlayerState.death:
+			return "death"
+		_:
+			return "idle"
+
+func get_weapon_animation() -> String:
+	match weapon:
+		WeaponState.fist:
+			return "-fist"
+		WeaponState.fixedKey:
+			return "-fixed-key"
+		_:
+			return "-"
+
+func set_weapon(weaponString: String) -> void:
+	match weaponString:
+		"fist":
+			weapon = WeaponState.fist
+			go_to_walk_state()
+			return
+		"fixedKey":
+			weapon = WeaponState.fixedKey
+			go_to_walk_state()
+			return
+		_:
+			print("Weapon not found")
+			weapon = WeaponState.fist
+			go_to_walk_state()
+			return

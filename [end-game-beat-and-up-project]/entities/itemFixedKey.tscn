@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dx6ow3a33kf6n"]
+
+[ext_resource type="Script" uid="uid://ci7pvtnbtsmth" path="res://scripts/item_fixed_key.gd" id="1_ep8ot"]
+[ext_resource type="Texture2D" uid="uid://bruyj76tdtiuo" path="res://sprites/weapons/Sprite-fixed-key-Sheet.png" id="2_7432f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_voju5"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg1bl"]
+atlas = ExtResource("2_7432f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpuqj"]
+atlas = ExtResource("2_7432f")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1v3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg1bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpuqj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="ItemFixedKey" type="Area2D" unique_id=783945781]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ep8ot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1936898473]
+shape = SubResource("CapsuleShape2D_voju5")
+debug_color = Color(0, 0.52784276, 0.9985824, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2024892651]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_y1v3r")
+autoplay = "default"
+frame_progress = 0.57173514
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

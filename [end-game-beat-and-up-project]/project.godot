@@ -68,6 +68,7 @@ death={
 2d_render/layer_2="player"
 2d_render/layer_3="action"
 2d_render/layer_4="enemies"
+2d_render/layer_5="weapons"
 
 [physics]
 

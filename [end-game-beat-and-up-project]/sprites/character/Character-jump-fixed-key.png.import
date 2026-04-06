@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfmylu7s2gfnh"
-path="res://.godot/imported/Character-V1-walkt.png-7cf772e6f06805fc5a2dfeafe6256e3a.ctex"
+uid="uid://g5bvu8ksj8rn"
+path="res://.godot/imported/Character-jump-fixed-key.png-099723822a6dd1c80b5122d1340c2fab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/character/Character-V1-walkt.png"
-dest_files=["res://.godot/imported/Character-V1-walkt.png-7cf772e6f06805fc5a2dfeafe6256e3a.ctex"]
+source_file="res://sprites/character/Character-jump-fixed-key.png"
+dest_files=["res://.godot/imported/Character-jump-fixed-key.png-099723822a6dd1c80b5122d1340c2fab.ctex"]
 
 [params]
 

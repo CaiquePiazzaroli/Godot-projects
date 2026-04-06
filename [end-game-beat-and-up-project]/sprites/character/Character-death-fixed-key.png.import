@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qlryd1w6bedn"
-path="res://.godot/imported/Character-V2-walkt.png-078e0bbb17973800c6048a92cc326254.ctex"
+uid="uid://b155xpq3htpgi"
+path="res://.godot/imported/Character-death-fixed-key.png-5dae46eb4361da47a61eeedaf1d05b4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/character/Character-V2-walkt.png"
-dest_files=["res://.godot/imported/Character-V2-walkt.png-078e0bbb17973800c6048a92cc326254.ctex"]
+source_file="res://sprites/character/Character-death-fixed-key.png"
+dest_files=["res://.godot/imported/Character-death-fixed-key.png-5dae46eb4361da47a61eeedaf1d05b4c.ctex"]
 
 [params]
 
