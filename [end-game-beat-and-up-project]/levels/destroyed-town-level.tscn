@@ -1,14 +1,15 @@
 [gd_scene format=4 uid="uid://dxjd6k8mmapw"]
 
-[ext_resource type="PackedScene" uid="uid://bti05wfvillbt" path="res://entities/player.tscn" id="1_m24el"]
-[ext_resource type="PackedScene" uid="uid://dxl7s5gv0exne" path="res://entities/zombie.tscn" id="1_vque4"]
+[ext_resource type="PackedScene" uid="uid://bti05wfvillbt" path="res://entities/player/player.tscn" id="1_m24el"]
+[ext_resource type="PackedScene" uid="uid://dxl7s5gv0exne" path="res://entities/enemies/zombie.tscn" id="1_vque4"]
 [ext_resource type="Texture2D" uid="uid://b7lcevmpr618p" path="res://sprites/terrain/backgroundCity.png" id="1_xav7p"]
 [ext_resource type="Texture2D" uid="uid://dyml6b4exu267" path="res://sprites/terrain/Sprite-0007-Sheet-Sheet.png" id="2_rwnq5"]
 [ext_resource type="Texture2D" uid="uid://8i4sejxweh6i" path="res://sprites/terrain/Sprite-0008-Sheet.png" id="3_54r8c"]
 [ext_resource type="Texture2D" uid="uid://dqwrc8dsm13lf" path="res://sprites/terrain/Sprite-0008-SheetV2.png" id="3_xenkc"]
-[ext_resource type="PackedScene" uid="uid://bk6jio7udgkp0" path="res://entities/camera.tscn" id="6_ke3t4"]
-[ext_resource type="PackedScene" uid="uid://bj8kbl5ksr622" path="res://entities/actionButton.tscn" id="7_afr7k"]
-[ext_resource type="PackedScene" uid="uid://dx6ow3a33kf6n" path="res://entities/itemFixedKey.tscn" id="9_ixkmw"]
+[ext_resource type="PackedScene" uid="uid://bk6jio7udgkp0" path="res://entities/levelComponents/camera.tscn" id="6_ke3t4"]
+[ext_resource type="PackedScene" uid="uid://bj8kbl5ksr622" path="res://entities/levelComponents/actionButton.tscn" id="7_afr7k"]
+[ext_resource type="PackedScene" uid="uid://dx6ow3a33kf6n" path="res://entities/playerItens/itemFixedKey.tscn" id="9_ixkmw"]
+[ext_resource type="PackedScene" uid="uid://ctov88ojsxatc" path="res://entities/player/HealthPlayerBar.tscn" id="10_eyn1g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54r8c"]
 texture = ExtResource("2_rwnq5")
@@ -68,6 +69,7 @@ texture = ExtResource("1_xav7p")
 centered = false
 
 [node name="Player" parent="." unique_id=761504039 instance=ExtResource("1_m24el")]
+unique_name_in_owner = true
 z_index = 1
 position = Vector2(26, 160)
 
@@ -97,10 +99,14 @@ position = Vector2(85, 160)
 
 [node name="enemies" type="Node" parent="." unique_id=1803987432]
 
-[node name="EnemyZombie2" parent="enemies" unique_id=418658203 instance=ExtResource("1_vque4")]
-z_index = 1
-position = Vector2(262, 160)
+[node name="EnemyZombie" parent="enemies" unique_id=418658203 instance=ExtResource("1_vque4")]
+position = Vector2(259, 159)
+isHealthVisible = true
 
-[node name="EnemyZombie" parent="enemies" unique_id=1978541418 instance=ExtResource("1_vque4")]
-z_index = 1
-position = Vector2(441, 159)
+[node name="EnemyZombie2" parent="enemies" unique_id=296222859 instance=ExtResource("1_vque4")]
+position = Vector2(395, 158)
+isHealthVisible = true
+
+[node name="hud" type="Node" parent="." unique_id=1524379151]
+
+[node name="HealthPlayerBar" parent="hud" unique_id=1211099960 instance=ExtResource("10_eyn1g")]

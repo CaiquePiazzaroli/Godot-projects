@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://f4jkwoala3sp" path="res://sprites/character/character-idlet.png" id="1_b0kkn"]
 [ext_resource type="Script" uid="uid://d32ie47haveaa" path="res://scripts/player.gd" id="1_e4p34"]
 [ext_resource type="Texture2D" uid="uid://ppbvo4v7mmo5" path="res://sprites/character/Character-V1-Death.png" id="2_qsoyl"]
+[ext_resource type="Texture2D" uid="uid://cvcpukuholjnt" path="res://sprites/character/Character-attack-fist.png" id="2_x08pd"]
+[ext_resource type="Texture2D" uid="uid://do3l70hw1aunv" path="res://sprites/character/Characte-attack-fixed-key.png" id="3_dchgp"]
 [ext_resource type="Texture2D" uid="uid://b155xpq3htpgi" path="res://sprites/character/Character-death-fixed-key.png" id="3_ef06p"]
 [ext_resource type="Texture2D" uid="uid://bvyjpe0oxwq1n" path="res://sprites/character/Character-V1-jumpt.png" id="3_qly61"]
 [ext_resource type="Texture2D" uid="uid://bi3mksq7xyn5c" path="res://sprites/character/Character-v21-WALK.png" id="5_qly61"]
@@ -15,6 +17,38 @@ size = Vector2(4.166667, 13.791667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfe5m"]
 size = Vector2(19, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plaij"]
+atlas = ExtResource("2_x08pd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib8tg"]
+atlas = ExtResource("2_x08pd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcwxb"]
+atlas = ExtResource("2_x08pd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2i2q"]
+atlas = ExtResource("2_x08pd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdqif"]
+atlas = ExtResource("3_dchgp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egchw"]
+atlas = ExtResource("3_dchgp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykqge"]
+atlas = ExtResource("3_dchgp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn2x3"]
+atlas = ExtResource("3_dchgp")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdgjc"]
 atlas = ExtResource("2_qsoyl")
@@ -106,6 +140,40 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3f3p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plaij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib8tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcwxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2i2q")
+}],
+"loop": false,
+"name": &"attack-fist",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdqif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egchw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykqge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn2x3")
+}],
+"loop": false,
+"name": &"attack-fixed-key",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdgjc")
@@ -213,6 +281,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef06p"]
+size = Vector2(6, 19)
+
 [node name="Player" type="CharacterBody2D" unique_id=761504039 groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_e4p34")
@@ -233,5 +304,16 @@ debug_color = Color(0.9369294, 0.06591474, 0.60109645, 0.41960785)
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u3f3p")
-animation = &"death-fixed-key"
+animation = &"attack-fist"
 autoplay = "idle-fist"
+
+[node name="PlayerAttackHitbox" type="Area2D" parent="." unique_id=662468822]
+collision_layer = 2
+collision_mask = 8
+
+[node name="PlayerAttackHitboxCollision" type="CollisionShape2D" parent="PlayerAttackHitbox" unique_id=2018229810]
+position = Vector2(10, 0.5)
+shape = SubResource("RectangleShape2D_ef06p")
+disabled = true
+
+[connection signal="area_entered" from="PlayerAttackHitbox" to="." method="_on_player_attack_hitbox_area_entered"]

@@ -1,15 +1,29 @@
 [gd_scene format=3 uid="uid://bj8vd1f1tg78e"]
 
+[ext_resource type="Script" uid="uid://c4n38f3qx232m" path="res://scripts/health_bar.gd" id="1_i5tas"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u776x"]
 bg_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5tas"]
 bg_color = Color(0, 0.63405854, 0.96253556, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_u776x"]
+font_size = 1
+
 [node name="HealthBar" type="ProgressBar" unique_id=279397267]
 offset_right = 60.0
 offset_bottom = 4.0
 theme_override_styles/background = SubResource("StyleBoxFlat_u776x")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i5tas")
-value = 60.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
+script = ExtResource("1_i5tas")
+
+[node name="Label" type="Label" parent="." unique_id=1613434225]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 7.0
+text = "Text"
+label_settings = SubResource("LabelSettings_u776x")

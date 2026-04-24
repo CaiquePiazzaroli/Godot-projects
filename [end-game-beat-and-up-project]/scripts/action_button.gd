@@ -19,7 +19,7 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
-	print($".".name)
+	#print($".".name)
 	anim.show() # Mostra a animação do botao quando o player entra na area
 
 

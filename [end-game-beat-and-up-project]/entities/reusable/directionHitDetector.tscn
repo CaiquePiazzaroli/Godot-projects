@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cwge8my0njksq"]
+
+[ext_resource type="Script" uid="uid://dm2e4cgiccwi8" path="res://scripts/direction_hit_detector.gd" id="1_tl1y2"]
+
+[node name="directionHitDetector" type="Node2D" unique_id=435507142]
+script = ExtResource("1_tl1y2")
+
+[node name="Label2" type="Label" parent="." unique_id=1562730431]
+offset_left = -95.0
+offset_top = -24.0
+offset_right = -22.0
+offset_bottom = -1.0
+text = "esquerda"
+
+[node name="leftRaycast" type="RayCast2D" parent="." unique_id=1039500559]
+position = Vector2(-3, 0)
+target_position = Vector2(-50, 0)
+collision_mask = 2
+
+[node name="rightRaycast" type="RayCast2D" parent="." unique_id=366300136]
+position = Vector2(3, 0)
+target_position = Vector2(50, 0)
+collision_mask = 2
+
+[node name="Label" type="Label" parent="." unique_id=1222141524]
+offset_left = 12.0
+offset_top = -25.0
+offset_right = 63.0
+offset_bottom = -2.0
+text = "direita"

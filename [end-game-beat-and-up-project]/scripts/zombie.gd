@@ -4,18 +4,25 @@ extends CharacterBody2D
 @onready var zombie_walk_timer: Timer = $ZombieWalkTimer
 @onready var zombie_attack: RayCast2D = $ZombieAttackRayCast2D
 @export var zombie_velocity: int = -10
-@onready var zombie_hit_area_collision: CollisionShape2D = $ZombieHitArea/ZombieHitAreaCollision
+@onready var zombie_hit_area_collision: CollisionShape2D = $ZombieAttackHitbox/ZombieHitAreaCollision
 @onready var zombie_vision: RayCast2D = $ZombieVision
 @onready var zombie_back_detector: RayCast2D = $ZombieBackDetectorRayCast2D
+@onready var zombie_take_damage_collision: CollisionShape2D = $ZombieTakeDamageHitbox/ZombieTakeDamageCollision
+@onready var health_bar: Node2D = $HealthBarMain
+@onready var direction_hit_detector: Node2D = $directionHitDetector
 
-var direction: float = 0.0
 var state: ZombieState
+@export var max_health: int = 2
+@export var isHealthVisible = false
+var knockback_direction: float = 0.0
 
 enum ZombieState {
 	idle,
 	walk,
 	attack,
-	chaseState,
+	chase,
+	takeDamage,
+	death
 }
 
 func _ready() -> void:
@@ -31,8 +38,12 @@ func _physics_process(delta: float) -> void:
 			walk_state(delta)
 		ZombieState.attack:
 			attack_state(delta)
-		ZombieState.chaseState:
+		ZombieState.chase:
 			chase_state(delta)
+		ZombieState.takeDamage:
+			take_damage_state(delta)
+		ZombieState.death:
+			death_state(delta)
 			
 func go_to_idle_state() -> void:
 	zombie_animation.play("zombie_idle")
@@ -49,7 +60,16 @@ func go_to_attack_state() -> void:
 
 func go_to_chase_state() -> void:
 	zombie_animation.play("chase")
-	state = ZombieState.chaseState
+	state = ZombieState.chase
+	
+func go_to_take_damage_state() -> void:
+	zombie_animation.play("take_damage")
+	state = ZombieState.takeDamage
+
+func go_to_death_state() -> void:
+	zombie_animation.play("death")
+	zombie_take_damage_collision.disabled = true
+	state = ZombieState.death
 
 func idle_state(delta: float):
 	apply_gravity(delta)
@@ -81,10 +101,11 @@ func attack_state(delta:float):
 	
 	if zombie_animation.frame == 1: # Ativa colisão do hit
 		zombie_hit_area_collision.disabled = false
-	
+	else:
+		zombie_hit_area_collision.disabled = true
+
 	if !zombie_animation.is_playing():
-		zombie_hit_area_collision.disabled = true #Desativa a colisão do hit
-		
+		zombie_hit_area_collision.disabled = true
 		if zombie_back_detector.is_colliding(): # Verifica se o player está nas costas
 			invertZombieDirection()
 		zombie_back_detector.enabled = false # Desativa o detector das costas
@@ -102,6 +123,18 @@ func chase_state(delta:float) -> void:
 	if !zombie_vision.is_colliding():
 		go_to_walk_state()
 		return
+
+func take_damage_state(delta: float) -> void:
+	apply_gravity(delta)
+	apply_velocity()
+	
+	if !zombie_animation.is_playing():
+		go_to_walk_state()
+		return
+
+func death_state(_delta: float):
+	if !zombie_animation.is_playing():
+		$".".queue_free()
 
 func _on_zombie_walk_timer_timeout() -> void:
 	set_opposite_state()
@@ -125,17 +158,20 @@ func apply_velocity():
 			velocity.x = zombie_velocity
 		ZombieState.attack:
 			velocity.x = 0
-		ZombieState.chaseState:
+		ZombieState.chase:
 			velocity.x = zombie_velocity * 1.8
+		ZombieState.takeDamage:
+			velocity.x = knockback_direction * 10
+		ZombieState.death:
+			velocity.x = 0
+		
 	move_and_slide()
 
 func invertZombieDirection():
 	zombie_velocity *= -1
 	scale.x *= -1
-
-func _on_hit_area_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		var player: CharacterBody2D = body
-		player.call_deferred("go_to_death_state") # Muda o player para death
-		player.collision_layer = 0 # Altera a camada de colisão para nao colidir mais
-		
+	direction_hit_detector.scale.x *= -1
+	
+func take_damage() -> void:
+	knockback_direction = direction_hit_detector.get_hit_direction()
+	health_bar.take_damage()

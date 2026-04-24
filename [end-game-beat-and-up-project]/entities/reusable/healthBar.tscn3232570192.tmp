@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bj8vd1f1tg78e"]
+
+[ext_resource type="Script" uid="uid://c4n38f3qx232m" path="res://scripts/health_bar.gd" id="1_i5tas"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u776x"]
+bg_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5tas"]
+bg_color = Color(0.19104853, 0.6151758, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u776x"]
+font_size = 6
+
+[node name="HealthBarMain" type="Node2D" unique_id=639791585]
+script = ExtResource("1_i5tas")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=279397267]
+offset_right = 22.0
+offset_bottom = 1.0
+theme_override_styles/background = SubResource("StyleBoxFlat_u776x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i5tas")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1613434225]
+offset_top = -11.0
+offset_right = 38.0
+text = "Text"
+label_settings = SubResource("LabelSettings_u776x")
+
+[connection signal="value_changed" from="HealthBar" to="." method="_on_health_bar_value_changed"]
