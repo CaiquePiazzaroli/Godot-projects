@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dgxj364ielg61"]
+
+[ext_resource type="Texture2D" uid="uid://c1ik1x75meo5c" path="res://icon.svg" id="1_0w633"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g8olo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g8olo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0w633"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nnxny"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_nnxny"]
+
+[node name="MyGame" type="Node2D" unique_id=860904947]
+
+[node name="BackgroundElements" type="Node2D" parent="." unique_id=85369370]
+
+[node name="Sky" type="MeshInstance2D" parent="BackgroundElements" unique_id=298915686]
+modulate = Color(0.48000002, 0.93066674, 1, 1)
+position = Vector2(575.25, 218.62502)
+scale = Vector2(1151.5, 430.75003)
+mesh = SubResource("QuadMesh_g8olo")
+
+[node name="Grass" type="MeshInstance2D" parent="BackgroundElements" unique_id=979841918]
+modulate = Color(1, 0.9673334, 0.01999998, 1)
+position = Vector2(1034.7744, 110.75004)
+scale = Vector2(179.75252, 172.50003)
+mesh = SubResource("SphereMesh_g8olo")
+
+[node name="Sun" type="MeshInstance2D" parent="BackgroundElements" unique_id=37269464]
+modulate = Color(0.3948, 0.84, 0.42447996, 1)
+position = Vector2(575.25, 540.5)
+scale = Vector2(1151.5, 214.99998)
+mesh = SubResource("QuadMesh_g8olo")
+
+[node name="Trees" type="Node2D" parent="." unique_id=1454404962]
+
+[node name="TreeTrunk" type="MeshInstance2D" parent="Trees" unique_id=914250685]
+modulate = Color(0.35, 0.20416668, 0, 1)
+position = Vector2(764, 417.99997)
+scale = Vector2(48.24996, 185.5)
+mesh = SubResource("QuadMesh_0w633")
+
+[node name="TreeTrunk2" type="MeshInstance2D" parent="Trees" unique_id=1859852700]
+modulate = Color(0.07916668, 0.25, 0, 1)
+position = Vector2(764, 261)
+scale = Vector2(108.623085, 210.81255)
+mesh = SubResource("SphereMesh_nnxny")
+
+[node name="TreeTrunk3" type="MeshInstance2D" parent="Trees" unique_id=362248680]
+modulate = Color(0.35, 0.20416668, 0, 1)
+position = Vector2(939.25, 464.40625)
+scale = Vector2(48.24996, 185.5)
+mesh = SubResource("QuadMesh_0w633")
+
+[node name="TreeTrunk4" type="MeshInstance2D" parent="Trees" unique_id=501839458]
+modulate = Color(0.07916668, 0.25, 0, 1)
+position = Vector2(939.25, 318.90628)
+scale = Vector2(108.623085, 187.81255)
+mesh = SubResource("SphereMesh_nnxny")
+
+[node name="TreeTrunk5" type="MeshInstance2D" parent="Trees" unique_id=1378707802]
+modulate = Color(0.35, 0.20416668, 0, 1)
+position = Vector2(613.25, 476.40625)
+scale = Vector2(48.24996, 185.5)
+mesh = SubResource("QuadMesh_0w633")
+
+[node name="TreeTrunk6" type="MeshInstance2D" parent="Trees" unique_id=1655087713]
+modulate = Color(0.07916668, 0.25, 0, 1)
+position = Vector2(613.25, 346.40628)
+scale = Vector2(108.623085, 156.81255)
+mesh = SubResource("SphereMesh_nnxny")
+
+[node name="Character" type="Node2D" parent="." unique_id=2077353403]
+
+[node name="Torso" type="MeshInstance2D" parent="Character" unique_id=1621112204]
+modulate = Color(0, 0, 0.33, 1)
+position = Vector2(230, 431)
+rotation = 3.1415927
+scale = Vector2(35.943466, -141.5)
+mesh = SubResource("QuadMesh_nnxny")
+
+[node name="Torso2" type="MeshInstance2D" parent="Character" unique_id=189725407]
+modulate = Color(0, 0, 0.33, 1)
+position = Vector2(256.00003, 413.99997)
+rotation = 2.7329485
+scale = Vector2(15.453062, -60.834652)
+mesh = SubResource("QuadMesh_nnxny")
+
+[node name="Torso3" type="MeshInstance2D" parent="Character" unique_id=1323553716]
+modulate = Color(0, 0, 0.33, 1)
+position = Vector2(202, 414)
+rotation = -2.5380213
+scale = Vector2(15.453062, -60.834652)
+mesh = SubResource("QuadMesh_nnxny")
+
+[node name="Torso4" type="MeshInstance2D" parent="Character" unique_id=2125073223]
+modulate = Color(0, 0, 0.33, 1)
+position = Vector2(240, 503.99994)
+rotation = 3.0023394
+scale = Vector2(15.453062, -60.83465)
+mesh = SubResource("QuadMesh_nnxny")
+
+[node name="Torso5" type="MeshInstance2D" parent="Character" unique_id=2009836674]
+modulate = Color(0, 0, 0.33, 1)
+position = Vector2(219.00003, 505.00003)
+rotation = -3.001548
+scale = Vector2(15.453062, -60.834652)
+mesh = SubResource("QuadMesh_nnxny")
+
+[node name="Head" type="Sprite2D" parent="Character" unique_id=1703865923]
+position = Vector2(230, 350)
+scale = Vector2(0.5234375, 0.5234375)
+texture = ExtResource("1_0w633")

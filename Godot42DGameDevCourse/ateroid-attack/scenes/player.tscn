@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bb6koipmpq0e5"]
+
+[ext_resource type="Texture2D" uid="uid://cup14ucx6ifw8" path="res://assets/textures/green_ship.png" id="1_3vyb7"]
+
+[node name="Player" type="RigidBody2D" unique_id=1568732652]
+position = Vector2(673, 324)
+gravity_scale = 0.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1268531070]
+texture = ExtResource("1_3vyb7")

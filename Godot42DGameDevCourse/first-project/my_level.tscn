@@ -1,3 +1,11 @@
 [gd_scene format=3 uid="uid://b7aii2wn1toyl"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jjtxh"]
+
 [node name="MyLevel" type="Node2D" unique_id=1219298253]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=537799028]
+modulate = Color(0.41, 0.22344998, 0.036899988, 1)
+position = Vector2(590, 312)
+scale = Vector2(76.749954, 79.75)
+mesh = SubResource("CapsuleMesh_jjtxh")

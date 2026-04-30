@@ -5,5 +5,5 @@
 [node name="SpriteScene" type="Node2D" unique_id=1784162522]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=596206689]
-position = Vector2(200, 678)
+position = Vector2(263, 263)
 texture = ExtResource("1_aylen")
