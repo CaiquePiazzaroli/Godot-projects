@@ -2,9 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://cup14ucx6ifw8" path="res://assets/textures/green_ship.png" id="1_3vyb7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
+radius = 39.0
+height = 126.0
+
 [node name="Player" type="RigidBody2D" unique_id=1568732652]
-position = Vector2(673, 324)
 gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578735736]
+shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1268531070]
 texture = ExtResource("1_3vyb7")

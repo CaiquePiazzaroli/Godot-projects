@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://76dacuqxjyyp"]
+
+[ext_resource type="Texture2D" uid="uid://h2me7qhedjiq" path="res://assets/textures/star_background.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bb6koipmpq0e5" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://240fw6jgtpfc" path="res://scenes/asteroid.tscn" id="3_lnu2h"]
+
+[node name="Game" type="Node2D" unique_id=509252357]
+
+[node name="Stars" type="Sprite2D" parent="." unique_id=1175833881]
+texture_repeat = 2
+position = Vector2(640, 360)
+texture = ExtResource("1_uwrxv")
+region_enabled = true
+region_rect = Rect2(0, 0, 10000, 10000)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=1568732652 instance=ExtResource("2_yqjtg")]
+position = Vector2(436, 230)
+
+[node name="Asteroids" type="Node2D" parent="." unique_id=1781021827]
+
+[node name="Asteroid2" parent="Asteroids" unique_id=140414407 instance=ExtResource("3_lnu2h")]
+position = Vector2(819, 367)
+
+[node name="Asteroid3" parent="Asteroids" unique_id=328051792 instance=ExtResource("3_lnu2h")]
+position = Vector2(832, 542)
+
+[node name="Asteroid4" parent="Asteroids" unique_id=1863329296 instance=ExtResource("3_lnu2h")]
+position = Vector2(1004, 209)
+
+[node name="Asteroid" parent="Asteroids" unique_id=559369187 instance=ExtResource("3_lnu2h")]
+position = Vector2(463, 452)
