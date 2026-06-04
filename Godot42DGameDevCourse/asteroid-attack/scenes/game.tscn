@@ -11,7 +11,7 @@ texture_repeat = 2
 position = Vector2(640, 360)
 texture = ExtResource("1_uwrxv")
 region_enabled = true
-region_rect = Rect2(0, 0, 10000, 10000)
+region_rect = Rect2(0, 0, 100000, 100000)
 metadata/_edit_lock_ = true
 
 [node name="Asteroids" type="Node2D" parent="." unique_id=1781021827]

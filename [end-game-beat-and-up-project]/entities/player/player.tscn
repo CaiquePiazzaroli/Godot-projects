@@ -363,7 +363,7 @@ debug_color = Color(0.9369294, 0.06591474, 0.60109645, 0.41960785)
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u3f3p")
-animation = &"take-damage-fixed-key"
+animation = &"walk-fist"
 autoplay = "idle-fist"
 
 [node name="PlayerAttackHitbox" type="Area2D" parent="." unique_id=662468822]

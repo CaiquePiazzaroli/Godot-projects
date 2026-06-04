@@ -9,8 +9,6 @@ height = 126.0
 
 [node name="Player" type="RigidBody2D" unique_id=1568732652]
 gravity_scale = 0.0
-lock_rotation = true
-linear_damp = 1.0
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578735736]
